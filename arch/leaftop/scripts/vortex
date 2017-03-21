@@ -1,0 +1,99 @@
+#!/bin/sh
+
+#
+# written by vortex !NOiDx.cCl2
+#
+# term detection copied from neofetch's wm detection
+# https://github.com/dylanaraps/neofetch
+#
+
+# set variables
+#os=`wmic os get Caption | awk '{print tolower($0)}' 1ORS=''`
+#os="${os/caption}"
+#os="${os/microsoft }"
+#os="${os/home premium}"
+os="arch linux"
+kernel=`uname -r`
+kernel="${kernel/(0.305\/5\/3)}"
+term="$(ps -aux | grep -m 1 -o -F -e "urxvt" -e "mintty" -e "xterm" -e "console2")"
+shell="$("$SHELL" --version 2>&1)"
+shell="${shell/5.3.1}"
+shell="${shell/(x86_64-unknown-linux-gnu)}"
+#cpu=$(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}')
+#c_lvl=`printf "%.0f" $cpu`
+cpu=`less /proc/cpuinfo | grep 'model name' /proc/cpuinfo | sed -e 's/model name. *: //' | uniq`
+cpu="${cpu/Intel(R) Core(TM) }"
+cpu="${cpu/CPU }"
+cpu="${cpu/@ 3.50GHz}"
+ram=`grep MemTotal /proc/meminfo | awk '$3=="kB"{$2=$2/1024**2;$3="GB";} 1 {printf("%.0f %.0f"$3"\n"), $1, $2;}'`
+ram="${ram/0 }"
+config="${HOME}/.config/.vortex/config"
+dir="${HOME}/.config/.vortex/"
+
+# set colors
+initializeANSI()
+{
+  esc=""
+  red="${esc}[31m";
+  lred="${esc}[91m";  
+  green="${esc}[32m";
+  lgreen="${esc}[92m";  
+  yellow="${esc}[33m";
+  lyellow="${esc}[93m";  
+  blue="${esc}[34m";
+  lblue="${esc}[94m";
+  magenta="${esc}[35m";
+  lmagenta="${esc}[95m";  
+  cyan="${esc}[36m";
+  lcyan="${esc}[96m";
+  white="${esc}[97m";  
+  reset="${esc}[0m"
+}
+
+initializeANSI
+
+cat << EOF 
+
+
+
+
+        ${lcyan} ▌ ▐·      ▄▄▄  ▄▄▄▄▄▄▄▄ .▐▄• ▄     ${yellow}>> os:${reset} $os
+        ${lcyan}▪█·█▌▪     ▀▄ █·•██  ▀▄.▀· █▌█▌▪    ${lred}>> kernel:${reset} $kernel
+        ${lcyan}▐█▐█• ▄█▀▄ ▐▀▀▄  ▐█.▪▐▀▀▪▄ ·██·     ${green}>> term:${reset} $term / $shell
+        ${lcyan} ███ ▐█▌.▐▌▐█•█▌ ▐█▌·▐█▄▄▌▪▐█·█▌    ${white}>> cpu:${reset} $cpu
+        ${lcyan}. ▀   ▀█▄▀▪.▀  ▀ ▀▀▀  ▀▀▀ •▀▀ ▀▀    ${magenta}>> ram:${reset} $ram
+
+				  ${lgreen}•${lyellow}•${lblue}•${lmagenta}•${lcyan}•${lwhite}•${lred}•${reset}
+EOF
+
+
+
+# print tripcode in toilet
+while [ ! $# -eq 0 ]
+do
+    case "$1" in
+        --gay | -g)
+		echo ''
+        	cat ${config}|toilet -f rusto -F gay
+            ;;
+		--metal | -m)
+		echo ''
+			cat ${config}|toilet -f rusto -F metal
+			;;
+		--set-trip)
+		read -p "Please enter your tripcode: " tcode
+		
+			# if the config file exists, store the input. if not, create the file
+			if [ -f "$config" ]
+			then
+				rm -rf "${config}"
+				echo "${tcode}" >> "${config}"
+				echo "Your tripcode has been set."
+			else
+				mkdir $dir
+				echo >> "${config}"
+			fi
+			;;
+    esac
+    shift
+done
