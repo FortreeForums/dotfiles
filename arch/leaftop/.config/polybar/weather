@@ -1,0 +1,6 @@
+#!/bin/bash
+
+LOC="207931"
+URL="http://www.accuweather.com/en/ie/dublin/207931/weather-forecast/$LOC"
+
+wget -q -o /dev/null -O- "$URL" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $12"" }' | head -1
