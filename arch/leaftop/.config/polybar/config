@@ -1,0 +1,139 @@
+[colors]
+background = #1a2023
+background-alt = #1a2023
+foreground = #DDDDDD
+foreground-alt = #548587
+fg-1 = #ffaf5f
+fg-2 = #ffd494
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/vortex]
+monitor = ${env:MONITOR:DVI-D-0}
+width = 25%
+height = 24
+offset-x=1440
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = MonteCarlo:pixelsize=12:antialias=false;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=10:antialias=false;1
+font-3 = Unifont Upper:fontformat=truetype:size8:antialias=false;0
+font-4 = artwiz cure:pixelsize=10:antialias=false;1
+font-5 = FontAwesome:pixelsize=10:antialias=false;1
+
+modules-left = 
+;modules-center = mpd
+modules-right = volume memory cpu weather date
+
+tray-position = right
+tray-padding = 2
+
+[module/weather]
+type = custom/script
+interval = 10
+format = <label>
+format-prefix = " "
+format-prefix-foreground = #695742
+;format-underline = #c38159
+exec = ~/.config/polybar/weather
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "ܭ "
+format-prefix-foreground = #cba55c
+;format-underline = #98218E
+label = %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "ᚎ "
+format-prefix-foreground = #af6b42
+;format-underline = #F4436F
+label = %percentage_used%%
+
+[module/eth]
+type = internal/network
+interface = enp0s31f6
+interval = 3.0
+
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected = <label-disconnected>
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %d/%m (%a)"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = ɸ
+format-prefix-foreground = #4b5f57
+;format-underline = #87875f
+
+label = %date% %time%
+
+[module/volume]
+type = internal/volume
+
+format-volume = <label-volume> <bar-volume>
+label-volume = "🔊"
+label-volume-foreground = ${root.foreground}
+
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = "🔇"
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #ab7a55
+bar-volume-foreground-1 = #af6b42
+bar-volume-foreground-2 = #c38159
+bar-volume-foreground-3 = #b9924a
+bar-volume-foreground-4 = #cba55c
+bar-volume-foreground-5 = #d69d55
+bar-volume-foreground-6 = #e1b172
+bar-volume-gradient = false
+bar-volume-indicator = 
+bar-volume-indicator-font = 2
+bar-volume-fill = •
+bar-volume-fill-font = 2
+bar-volume-empty = ·
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = #666666
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
