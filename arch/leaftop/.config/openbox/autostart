@@ -1,0 +1,10 @@
+#!/bin/bash
+feh --bg-scale /home/shane/Pictures/pape/11.png &
+tint2 &
+polybar vortex &
+dunst &
+mpd ${HOME}/.mpd/mpd.conf &
+mpdscribble &
+mpdnotify &
+/bin/ckb &
+redshift -l 53.3498:6.2603 &
