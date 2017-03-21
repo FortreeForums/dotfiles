@@ -1,0 +1,2 @@
+#!/bin/bash
+${HOME}/scripts/lastfm_love.py && notify-send "$(mpc current) has been loved"
