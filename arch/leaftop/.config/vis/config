@@ -1,0 +1,11 @@
+audio.sources=pulse
+mpd.fifo.path=/tmp/mpd.fifo
+audio.stereo.enabled=true
+visualizers=spectrum,ellipse,lorenz
+visualizer.spectrum.character=▮
+visualizer.spectrum.bar.width=2
+visualizer.spectrum.bar.spacing=0
+visualizer.spectrum.smoothing.mode=monstercat
+visualizer.ellipse.character=◈
+visualizer.ellipse.radius=2
+colors.scheme=vortex
