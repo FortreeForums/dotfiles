@@ -1,0 +1,80 @@
+## menu for bbzero
+
+[begin] (BlackBox)
+	[search] (Search) {SEARCHMENU|COMMON_SEARCHMENU}
+	[path] (Start) {STARTMENU|COMMON_STARTMENU}
+	[exec] (Explorer) {explorer.exe}
+
+	[nop]
+	 [exec] (Firefox) {"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"}
+	 [exec]	(Steam)	{"C:\Program Files (x86)\Steam\Steam.exe"}
+	 [exec]	(Babun)	{"C:\Users\Shane\.babun\babun.bat"}
+	 [exec] (Desktops) {"C:\Users\Shane\.babun\cygwin\home\Shane\desktop\"}
+	 [exec]	(X11) {"C:\Users\Shane\.babun\cygwin\bin\XWin.exe" -multiwindow -clipboard :0}
+	[nop]
+	[submenu] (Music)
+		[exec] (Rekordbox) {"C:\Program	Files (x86)\Pioneer\rekordbox 4.2.2\rekordbox.exe"}
+		[exec] (fb2k) {"C:\Program Files (x86)\foobar2000\foobar2000.exe"}
+		[exec] (Audacity) {"C:\Program Files (x86)\Audacity\audacity.exe"}
+		[end]
+	[submenu] (Emulation)
+		[exec] (PS1) {"C:\Program Files	(x86)\ePSXe205\ePSXe.exe"}
+		[exec] (PS2) {"C:\Users\Shane\Downloads\pcsx2\pcsx2.exe"}
+		[exec] (PSP) {"C:\Program Files (x86)\ppsspp_win\ppsspp\PPSSPPWindows64.exe"}
+		[exec] (GC/Wii)	{"C:\Program Files\Dolphin\Dolphin.exe"}
+		[exec] (GBC) {"C:\Program Files	(x86)\bgb\bgb.exe"}
+		[exec] (N64) {"C:\Program Files (x86)\Project64 2.3\Project64.exe"}
+		[exec] (SNES) {"C:\Program Files (x86)\snes9x-1.53-win32-x64\snes9x-x64.exe"}
+		[end]
+	[submenu] (System)
+		[path] (My Computer) {DRIVES}
+		[path] (Personal) {PERSONAL}
+		[path] (Bitbucket) {BITBUCKET}
+		[path] (Controls) {CONTROLS}
+		[exec] (NVIDIA Inspector) {"C:\Program Files (x86)\nvidiaInspector\nvidiainspector.exe"}
+		# Uncomment this line to check out all available system folders
+		# [include] {shellfolders.rc}
+		[run]  (Run)
+		[end]
+	[nop]
+	[stylesmenu] (Styles) {styles}
+	[submenu] (BlackBox)
+		[config] (Configuration)
+		[include] {plugins\bbLeanSkin\bbLeanSkinMenu.rc}
+		[submenu] (About)
+			[aboutstyle] (About Style)
+			[aboutplugins] (About Plugins)
+			[about] (About BlackBox)
+			[end]
+		[submenu] (Edit)
+			[editstyle] (Current Style)
+			[editmenu] (menu.rc)
+			[editblackbox] (blackbox.rc)
+			[editextensions] (extensions.rc)
+			[editplugins] (plugins.rc)
+			[edit] (bbKeys.rc) {plugins\bbKeys\bbKeys.rc}
+			[edit] (search.rc) {search.rc}
+			[end]
+		[submenu] (Search)
+			[reindex] (Reindex)
+			[abortindex] (Abort indexing)
+			[edit] (search.rc) {search.rc}
+			[end]
+		[nop]
+		# Also note that relative paths refer to the blackbox directory
+		[exec] (Documentation) {docs\bblean.htm}
+		[exec] (Install/Uninstall) {bsetshell.exe}
+		[exec] (bbStyleMaker) {bbstylemaker.exe}
+		[nop]
+		[reconfig] (Reconfigure)
+		[restart] (Restart)
+		[exit]  (Quit)
+		[end]
+	[submenu] (Off)
+		[lockworkstation] (Lock)
+		[logoff] (Logoff)
+		[suspend] (Standby)
+		[reboot] (Reboot)
+		[shutdown] (Shutdown)
+		[end]
+[end]
