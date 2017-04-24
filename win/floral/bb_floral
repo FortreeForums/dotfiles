@@ -1,0 +1,131 @@
+! Stylefile for blackbox
+
+!-- info --
+style.name:	bb_floral
+style.author: vortex !NoIDx.cCl2 (apathyrecharge)
+style.date:	16 Jan 2017
+style.credits: me
+style.comments:	giddyup ya slut ya
+
+
+!-- toolbar --
+toolbar.appearance: flat vertical
+toolbar.color1: #111122
+toolbar.color2: #111122
+toolbar.textColor: #a7a7ad
+toolbar.marginWidth: 1
+toolbar.font: MonteCarlo
+toolbar.fontHeight:	10
+toolbar.alignment: center
+toolbar.label.appearance: flat vertical
+toolbar.label.color1: #111122
+toolbar.label.color2: #111122
+toolbar.label.textColor: #f4436f
+toolbar.label.marginWidth: 1
+toolbar.windowLabel.appearance: flat vertical
+toolbar.windowLabel.color1:	#191531
+toolbar.windowLabel.color2: #191531
+toolbar.windowLabel.textColor: #cb515d
+toolbar.clock.appearance: flat vertical
+toolbar.clock.color1: #111122
+toolbar.clock.color2: #111122
+toolbar.clock.textColor: #a7a7ad
+toolbar.button.appearance: flat vertical
+toolbar.button.color1: #111122
+toolbar.button.color2: #111122
+toolbar.button.foregroundColor:	#94469b
+toolbar.button.marginWidth:	1
+toolbar.button.pressed.appearance: flat vertical
+toolbar.button.pressed.color1: #0d0b17
+toolbar.button.pressed.color2: #0d0b17
+toolbar.button.pressed.foregroundColor:	#7c4333
+
+!-- menu --
+menu.title.appearance: flat vertical
+menu.title.color1: #111122
+menu.title.color2: #111122
+menu.title.textColor: #a7a7ad
+menu.title.marginWidth: 1
+menu.title.font: Blank
+menu.title.fontHeight: 13
+menu.title.alignment: center
+menu.title.borderColor: #111122
+menu.title.borderWidth: 1
+menu.frame.appearance: flat vertical
+menu.frame.foregroundColor: #111122
+menu.frame.textColor: #a7a7ad
+menu.frame.disabledColor: #000000
+menu.frame.borderColor: #111122
+menu.frame.borderWidth: 1
+menu.frame.marginWidth: 2
+menu.frame.font: MonteCarlo
+menu.frame.fontHeight: 12
+menu.frame.alignment: left
+menu.frame.color1: #111122
+menu.frame.color2: #111122
+menu.active.appearance: flat vertical
+menu.active.color1: #111122
+menu.active.color2: #111122
+menu.active.foregroundColor: #bbbbbb
+menu.active.textColor: #8d8d88
+menu.active.borderColor: #111122
+menu.active.borderWidth: 1
+menu.active.marginWidth: 2
+menu.bullet: empty
+menu.bullet.position: right
+
+!-- window --
+window.title.focus.appearance: flat vertical
+window.title.focus.color1: #191531
+window.title.focus.color2: #191531
+window.label.focus.appearance: flat vertical
+window.label.focus.color1: #191531
+window.label.focus.color2: #191531
+window.label.focus.textColor: #13a9bf
+window.handle.focus.appearance: flat vertical
+window.handle.focus.color1: #191531
+window.handle.focus.color2: #191531
+window.grip.focus.appearance: flat vertical
+window.grip.focus.color1: #191531
+window.grip.focus.color2: #191531
+window.button.focus.appearance: flat vertical
+window.button.focus.color1: #191531
+window.button.focus.color2: #191531
+window.button.focus.foregroundColor: #13a9bf
+window.button.pressed.appearance: sunken vertical
+window.button.pressed.color1: #111122
+window.button.pressed.color2: #111122
+window.button.pressed.foregroundColor: #13a9bf
+window.button.pressed.borderColor: #111122
+window.button.pressed.borderWidth: 1
+window.title.unfocus.appearance: flat vertical
+window.title.unfocus.color1: #111122
+window.title.unfocus.color2: #111122
+window.title.unfocus.borderColor: #111122
+window.title.unfocus.borderWidth: 1
+window.label.unfocus.appearance: flat vertical
+window.label.unfocus.color1: #111122
+window.label.unfocus.color2: #111122
+window.label.unfocus.textColor: #000000
+window.handle.unfocus.appearance: flat vertical
+window.handle.unfocus.color1: #111122
+window.handle.unfocus.color2: #111122
+window.handle.unfocus.borderColor: #111122
+window.handle.unfocus.borderWidth: 1
+window.grip.unfocus.appearance: parentrelative border
+window.grip.unfocus.borderColor: #111122
+window.grip.unfocus.borderWidth: 1
+window.button.unfocus.appearance: flat vertical
+window.button.unfocus.color1: #
+window.button.unfocus.color2: #111122
+window.button.unfocus.foregroundColor: #13a9bf
+window.title.marginWidth: 2
+window.label.marginWidth: 0
+window.button.marginWidth: 0
+window.frame.focus.borderColor: #111122
+window.frame.unfocus.borderColor: #111122
+window.frame.borderWidth: 0
+window.handleHeight: 2
+window.font: blank
+window.fontHeight: 15
+window.alignment: left
