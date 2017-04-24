@@ -1,0 +1,97 @@
+!---- Frame1 ----
+@BBInterface Control Create Frame Frame1
+@BBInterface Control SetWindowProperty Frame1 X -1
+@BBInterface Control SetWindowProperty Frame1 Y 0
+@BBInterface Control SetWindowProperty Frame1 Width 82
+@BBInterface Control SetWindowProperty Frame1 Height 22
+@BBInterface Control SetWindowProperty Frame1 Border true
+@BBInterface Control SetWindowProperty Frame1 IsVisible true
+@BBInterface Control SetWindowProperty Frame1 Style "Toolbar"
+@BBInterface Control SetWindowProperty Frame1 IsToggledWithPlugins true
+@BBInterface Control SetWindowProperty Frame1 IsOnAllWorkspaces true
+@BBInterface Control SetWindowProperty Frame1 DetectFullScreen false
+@BBInterface Control SetWindowProperty Frame1 IsOnTop false
+@BBInterface Control SetWindowProperty Frame1 AutoHide false
+@BBInterface Control SetWindowProperty Frame1 IsSlitted false
+@BBInterface Control SetWindowProperty Frame1 IsTransparent false
+@BBInterface Control SetWindowProperty Frame1 Transparency 100
+@BBInterface Control SetWindowProperty Frame1 MakeInvisible "Never"
+@BBInterface Control SetControlProperty Frame1 HAlign "Center"
+@BBInterface Control SetControlProperty Frame1 VAlign "Top"
+@BBInterface Control SetControlProperty Frame1 HasTitleBar false
+@BBInterface Control SetControlProperty Frame1 IsLocked false
+
+!---- Frame1::Button1 ----
+@BBInterface Control CreateChild Frame1 Button Button1
+@BBInterface Control SetWindowProperty Button1 X 6
+@BBInterface Control SetWindowProperty Button1 Y 3
+@BBInterface Control SetWindowProperty Button1 Width 21
+@BBInterface Control SetWindowProperty Button1 Height 18
+@BBInterface Control SetWindowProperty Button1 Border true
+@BBInterface Control SetWindowProperty Button1 IsVisible true
+@BBInterface Control SetWindowProperty Button1 Style "Toolbar"
+@BBInterface Control SetWindowProperty Button1 Color "#111122"
+@BBInterface Control SetWindowProperty Button1 ColorTo "#111122"
+@BBInterface Control SetWindowProperty Button1 TextColor "#CB515D"
+@BBInterface Control SetWindowProperty Button1 Bevel "Flat"
+@BBInterface Control SetWindowProperty Button1 ShadowColor "Disable"
+@BBInterface Control SetWindowProperty Button1 ShadowPosX 1
+@BBInterface Control SetWindowProperty Button1 ShadowPosY 1
+@BBInterface Control SetWindowProperty Button1 FontName "MonteCarlo"
+@BBInterface Control SetWindowProperty Button1 FontSize 10
+@BBInterface Control SetWindowProperty Button1 FontBold false
+@BBInterface Control SetControlProperty Button1 HAlign "Center"
+@BBInterface Control SetControlProperty Button1 VAlign "Center"
+@BBInterface Control SetAgent Button1 Image Icon "C:\bbZero\plugins\workspace\1.ico"
+@BBInterface Control SetAgentProperty Button1 Image Size 14
+@BBInterface Control SetAgentProperty Button1 Image VAlign "Center"
+@BBInterface Control SetAgentProperty Button1 Image HAlign "Center"
+@BBInterface Control SetAgent Button1 MouseDown System "Workspace Right"
+
+!---- Frame1::Button2 ----
+@BBInterface Control CreateChild Frame1 Button Button2
+@BBInterface Control SetWindowProperty Button2 X 30
+@BBInterface Control SetWindowProperty Button2 Y 3
+@BBInterface Control SetWindowProperty Button2 Width 21
+@BBInterface Control SetWindowProperty Button2 Height 18
+@BBInterface Control SetWindowProperty Button2 Border true
+@BBInterface Control SetWindowProperty Button2 IsVisible true
+@BBInterface Control SetWindowProperty Button2 Style "Toolbar"
+@BBInterface Control SetWindowProperty Button2 Color "#111122"
+@BBInterface Control SetWindowProperty Button2 ColorTo "#111122"
+@BBInterface Control SetWindowProperty Button2 TextColor "#F2A297"
+@BBInterface Control SetWindowProperty Button2 Bevel "Flat"
+@BBInterface Control SetWindowProperty Button2 ShadowColor "Disable"
+@BBInterface Control SetWindowProperty Button2 ShadowPosX 1
+@BBInterface Control SetWindowProperty Button2 ShadowPosY 1
+@BBInterface Control SetControlProperty Button2 HAlign "Center"
+@BBInterface Control SetControlProperty Button2 VAlign "Center"
+@BBInterface Control SetAgent Button2 Image Icon "C:\bbZero\plugins\workspace\2.ico"
+@BBInterface Control SetAgentProperty Button2 Image Size 14
+@BBInterface Control SetAgentProperty Button2 Image VAlign "Center"
+@BBInterface Control SetAgentProperty Button2 Image HAlign "Center"
+@BBInterface Control SetAgent Button2 MouseDown System "Workspace Right"
+
+!---- Frame1::Button3 ----
+@BBInterface Control CreateChild Frame1 Button Button3
+@BBInterface Control SetWindowProperty Button3 X 55
+@BBInterface Control SetWindowProperty Button3 Y 3
+@BBInterface Control SetWindowProperty Button3 Width 21
+@BBInterface Control SetWindowProperty Button3 Height 18
+@BBInterface Control SetWindowProperty Button3 Border true
+@BBInterface Control SetWindowProperty Button3 IsVisible true
+@BBInterface Control SetWindowProperty Button3 Style "Toolbar"
+@BBInterface Control SetWindowProperty Button3 Color "#111122"
+@BBInterface Control SetWindowProperty Button3 ColorTo "#111122"
+@BBInterface Control SetWindowProperty Button3 TextColor "#9C61AB"
+@BBInterface Control SetWindowProperty Button3 Bevel "Flat"
+@BBInterface Control SetWindowProperty Button3 ShadowColor "Disable"
+@BBInterface Control SetWindowProperty Button3 ShadowPosX 1
+@BBInterface Control SetWindowProperty Button3 ShadowPosY 1
+@BBInterface Control SetControlProperty Button3 HAlign "Center"
+@BBInterface Control SetControlProperty Button3 VAlign "Center"
+@BBInterface Control SetAgent Button3 Image Icon "C:\bbZero\plugins\workspace\3.ico"
+@BBInterface Control SetAgentProperty Button3 Image Size 14
+@BBInterface Control SetAgentProperty Button3 Image VAlign "Center"
+@BBInterface Control SetAgentProperty Button3 Image HAlign "Center"
+@BBInterface Control SetAgent Button3 MouseDown System "Workspace Right"
