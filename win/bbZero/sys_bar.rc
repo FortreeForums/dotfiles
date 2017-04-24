@@ -1,0 +1,88 @@
+!---- bar ----
+@BBInterface Control Create Frame bar
+@BBInterface Control SetWindowProperty bar X 1783
+@BBInterface Control SetWindowProperty bar Y -1
+@BBInterface Control SetWindowProperty bar Width 137
+@BBInterface Control SetWindowProperty bar Height 23
+@BBInterface Control SetWindowProperty bar Border true
+@BBInterface Control SetWindowProperty bar IsVisible true
+@BBInterface Control SetWindowProperty bar Style "Toolbar"
+@BBInterface Control SetWindowProperty bar IsToggledWithPlugins true
+@BBInterface Control SetWindowProperty bar IsOnAllWorkspaces true
+@BBInterface Control SetWindowProperty bar DetectFullScreen false
+@BBInterface Control SetWindowProperty bar IsOnTop true
+@BBInterface Control SetWindowProperty bar AutoHide false
+@BBInterface Control SetWindowProperty bar IsSlitted false
+@BBInterface Control SetWindowProperty bar IsTransparent false
+@BBInterface Control SetWindowProperty bar Transparency 100
+@BBInterface Control SetWindowProperty bar MakeInvisible "Never"
+@BBInterface Control SetControlProperty bar HAlign "Center"
+@BBInterface Control SetControlProperty bar VAlign "Top"
+@BBInterface Control SetControlProperty bar HasTitleBar false
+@BBInterface Control SetControlProperty bar IsLocked false
+
+!---- bar::cpu_label ----
+@BBInterface Control CreateChild bar Label cpu_label
+@BBInterface Control SetWindowProperty cpu_label X 4
+@BBInterface Control SetWindowProperty cpu_label Y 2
+@BBInterface Control SetWindowProperty cpu_label Width 30
+@BBInterface Control SetWindowProperty cpu_label Height 18
+@BBInterface Control SetWindowProperty cpu_label Border true
+@BBInterface Control SetWindowProperty cpu_label IsVisible true
+@BBInterface Control SetWindowProperty cpu_label Style "Toolbar"
+@BBInterface Control SetWindowProperty cpu_label Color "#111122"
+@BBInterface Control SetWindowProperty cpu_label ColorTo "#111122"
+@BBInterface Control SetWindowProperty cpu_label TextColor "#98218E"
+@BBInterface Control SetWindowProperty cpu_label Bevel "Flat"
+@BBInterface Control SetWindowProperty cpu_label ShadowColor "Disable"
+@BBInterface Control SetWindowProperty cpu_label ShadowPosX 1
+@BBInterface Control SetWindowProperty cpu_label ShadowPosY 1
+@BBInterface Control SetControlProperty cpu_label HAlign "Center"
+@BBInterface Control SetControlProperty cpu_label VAlign "Center"
+@BBInterface Control SetAgent cpu_label Caption StaticText "cpu:"
+
+!---- bar::Label2 ----
+@BBInterface Control CreateChild bar Label Label2
+@BBInterface Control SetWindowProperty Label2 X 36
+@BBInterface Control SetWindowProperty Label2 Y 2
+@BBInterface Control SetWindowProperty Label2 Width 30
+@BBInterface Control SetWindowProperty Label2 Height 18
+@BBInterface Control SetWindowProperty Label2 Border true
+@BBInterface Control SetWindowProperty Label2 IsVisible true
+@BBInterface Control SetWindowProperty Label2 Style "Toolbar"
+@BBInterface Control SetControlProperty Label2 HAlign "Center"
+@BBInterface Control SetControlProperty Label2 VAlign "Center"
+@BBInterface Control SetAgent Label2 Caption SystemMonitor "CPUUsage"
+
+!---- bar::mem_label ----
+@BBInterface Control CreateChild bar Label mem_label
+@BBInterface Control SetWindowProperty mem_label X 68
+@BBInterface Control SetWindowProperty mem_label Y 2
+@BBInterface Control SetWindowProperty mem_label Width 33
+@BBInterface Control SetWindowProperty mem_label Height 18
+@BBInterface Control SetWindowProperty mem_label Border true
+@BBInterface Control SetWindowProperty mem_label IsVisible true
+@BBInterface Control SetWindowProperty mem_label Style "Toolbar"
+@BBInterface Control SetWindowProperty mem_label Color "#111122"
+@BBInterface Control SetWindowProperty mem_label ColorTo "#111122"
+@BBInterface Control SetWindowProperty mem_label TextColor "#98218E"
+@BBInterface Control SetWindowProperty mem_label Bevel "Flat"
+@BBInterface Control SetWindowProperty mem_label ShadowColor "Disable"
+@BBInterface Control SetWindowProperty mem_label ShadowPosX 1
+@BBInterface Control SetWindowProperty mem_label ShadowPosY 1
+@BBInterface Control SetControlProperty mem_label HAlign "Center"
+@BBInterface Control SetControlProperty mem_label VAlign "Center"
+@BBInterface Control SetAgent mem_label Caption StaticText "mem:"
+
+!---- bar::Label1 ----
+@BBInterface Control CreateChild bar Label Label1
+@BBInterface Control SetWindowProperty Label1 X 103
+@BBInterface Control SetWindowProperty Label1 Y 2
+@BBInterface Control SetWindowProperty Label1 Width 30
+@BBInterface Control SetWindowProperty Label1 Height 19
+@BBInterface Control SetWindowProperty Label1 Border true
+@BBInterface Control SetWindowProperty Label1 IsVisible true
+@BBInterface Control SetWindowProperty Label1 Style "Toolbar"
+@BBInterface Control SetControlProperty Label1 HAlign "Center"
+@BBInterface Control SetControlProperty Label1 VAlign "Center"
+@BBInterface Control SetAgent Label1 Caption SystemMonitor "PhysicalMemoryUsed"
