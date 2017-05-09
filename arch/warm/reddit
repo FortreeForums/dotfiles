@@ -94,7 +94,7 @@ color:#9a77b1 !important;
 	
 	.thing .tagline .author.submitter {
 		background-color:transparent !important;
-		color:#d69d55 !important;	
+		color:#ed5463 !important;	
 	}
 	
 /*hidden content*/
@@ -1615,7 +1615,7 @@ input[type="checkbox"]:checked {
 }
 
 .newComments {
-	color:#d69d55 !important;
+	color:#d93259 !important;
 }
 
 #RESDashboardAddComponent {
