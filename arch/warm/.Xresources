@@ -1,0 +1,96 @@
+! main colors ///
+*background: #060108
+*foreground: #ccccce
+! Black + DarkGrey
+*color0:  #060108
+*color8:  #666666
+! DarkRed + Red
+*color1:  #6E1336
+*color9:  #6E1336
+! DarkGreen + Green
+*color2:  #493854
+*color10: #381f3f
+! DarkYellow + Yellow
+*color3:  #902341
+*color11: #902341
+! DarkBlue + Blue
+*color4:  #335147
+*color12: #2c413d
+! DarkMagenta + Magenta
+*color5:  #D93259
+*color13: #D93259
+! DarkCyan + Cyan
+*color6:  #ED5463
+*color14: #ED5463
+! LightGrey + White
+*color7:  #AC8276
+*color15: #efdbab
+! \\\
+
+! secondary colors ///
+URxvt.color24:  #076678
+URxvt.color66:  #427b58
+URxvt.color88:  #9d0006
+URxvt.color96:  #8f3f71
+URxvt.color100: #79740e
+URxvt.color108: #8ec07c
+URxvt.color109: #83a598
+URxvt.color130: #af3a03
+URxvt.color136: #b57614
+URxvt.color142: #b8bb26
+URxvt.color167: #fb4934
+URxvt.color175: #d3869b
+URxvt.color208: #fe8019
+URxvt.color214: #fabd2f
+URxvt.color223: #ebdbb2
+URxvt.color228: #f2e5bc
+URxvt.color229: #fbf1c7
+URxvt.color230: #f9f5d7
+URxvt.color234: #1d2021
+URxvt.color235: #282828
+URxvt.color236: #32302f
+URxvt.color237: #3c3836
+URxvt.color239: #504945
+URxvt.color241: #665c54
+URxvt.color243: #7c6f64
+! URxvt.color244: #928374
+! URxvt.color245: #928374
+URxvt.color244: #98218e
+URxvt.color245: #98218e
+URxvt.color246: #a89984
+URxvt.color248: #bdae93
+URxvt.color250: #d5c4a1
+! \\\
+
+! URxvt ///
+URxvt*font: xft:MonteCarlo:size=12
+URxvt*boldFont: xft:MonteCarlo:size=12
+URxvt.italicFont: xft:MonteCarlo:pixelsize=12
+URxvt.boldItalicFont: xft:MonteCarlo:pixelsize=12
+URxvt.geometry: 80x30
+URxvt.saveLines: 10000
+URxvt.cutchars: "()*,<>[]{}|''"
+URxvt.perl-ext-common: default,matcher,searchable-scrollback,url-select,selection-to-clipboard
+URxvt.selection-autotransform.0: s/^([^:[:space:]]+):(\\d+):?$/+$2 \\Q$1\\E/
+URxvt.skipBuiltinGlyphs: true
+URxvt.url-launcher: /bin/firefox
+URxvt.url-select.underline: true
+URxvt.url-select.launcher: /bin/firefox
+! URxvt.internalBorder: 10 - 10px padding
+URxvt*colorUL: #4b5f57
+URxvt.scrollBar: false
+URxvt.visualBell: true
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: true
+ URxvt.cursorColor:#171e22
+URxvt*title: term
+URxvt*lineSpace: -1
+! \\\
+
+! Font settings
+Xft.hintstyle:              hintfull
+Xft.hinting:                1
+Xft.antialias:              false
+Xft.rgba:                   rgb
+Xft.lcdfilter:              lcddefault
+Xft.dpi: 101
