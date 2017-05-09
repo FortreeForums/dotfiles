@@ -1,0 +1,52 @@
+## modification of sanctuary by hokagemadura
+
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_sync_interval = "10" 
+visualizer_in_stereo = "yes"
+visualizer_type = "spectrum" (spectrum/wave)
+visualizer_look = "●▮"
+visualizer_color = "red"
+
+main_window_highlight_color = "white"
+
+#progressbar_look = "=>"
+#progressbar_look = "─- "
+#progressbar_look = "▒▒░"
+#progressbar_look = "┅┅┄"
+#progressbar_look = "─⊙┄"
+#progressbar_look = "─➞─"
+#progressbar_look = "─┅─"
+#progressbar_look = "▪▪▪"
+#progressbar_look = "▪▪▫"
+#progressbar_look = "───"
+#progressbar_look = "▁▁▁"
+#progressbar_look = "‒‒‒"
+#progressbar_look = "■◣ "
+#progressbar_look = "◈◆◇"
+progressbar_look = "••·"
+progressbar_color = "black"
+progressbar_elapsed_color = "magenta"
+progressbar_boldness = "no"
+
+song_list_format = " $5%a $5//$8 %t"
+song_status_format = " $7%a $2⟫$2⟫ $6%t $2⟫$2⟫ $5%b "
+
+now_playing_prefix = "$2⟩$2⟩ "
+now_playing_suffix = "$8$/b"
+
+song_columns_list_format = "(3)[]{} (40)[yellow]{t|f} (27)[cyan]{a} (27)[green]{b} (4)[magenta]{l}"
+
+color1 = "white"
+color2 = "black"
+
+colors_enabled = "yes"
+mouse_support = "yes"
+header_visibility = "no"
+statusbar_visibility = "yes"
+playlist_display_mode = "columns" (classic/columns)
+autocenter_mode = "no"
+titles_visibility = "no"
+enable_window_title = "no"
+execute_on_song_change = "/bin/mpdnotify"
+follow_now_playing_lyrics = "yes"
