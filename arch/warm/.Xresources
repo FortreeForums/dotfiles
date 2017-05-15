@@ -77,7 +77,7 @@ URxvt.url-launcher: /bin/firefox
 URxvt.url-select.underline: true
 URxvt.url-select.launcher: /bin/firefox
 ! URxvt.internalBorder: 10 - 10px padding
-URxvt*colorUL: #4b5f57
+URxvt*colorUL: #ED5463
 URxvt.scrollBar: false
 URxvt.visualBell: true
 URxvt.cursorBlink: true
