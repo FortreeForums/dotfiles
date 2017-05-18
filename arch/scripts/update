@@ -1,0 +1,5 @@
+#!/bin/bash
+
+update=`checkupdates | wc -l`
+
+echo "You have $update updates available." 
