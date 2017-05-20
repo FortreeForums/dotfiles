@@ -1,0 +1,10 @@
+#!/bin/bash
+
+update=`checkupdates | wc -l`
+mail=`python ~/scripts/gmail_unread`
+
+if (( update > 1 )); then
+	echo -e "You have $update updates available" 
+else
+	echo -e "You have $mail unread messages"
+fi
