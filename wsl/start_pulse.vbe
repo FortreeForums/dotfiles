@@ -1,0 +1,2 @@
+set ws=wscript.createobject("wscript.shell") 
+ws.run "C:\Users\Shane\AppData\Roaming\pulseaudio\bin\pulseaudio.exe --exit-idle-time=-1",0
