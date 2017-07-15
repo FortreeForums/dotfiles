@@ -1,2 +1,8 @@
-# dotfiles
-collection of my dots and scripts ive found online
+# arch
+dotfiles from my arch installation
+
+# win
+dotfiles from windows + cygwin
+
+# wsl
+dots using the linux subsystem on windows 10
