@@ -1,0 +1,10 @@
+#!/bin/bash
+
+update=`apt-get upgrade -s |grep -P '^\d+ upgraded'|cut -d" " -f1`
+mail=`python ~/scripts/gmail_unread`
+
+if [ "$update" -ge 1 ]; then
+	echo -e "You have $update updates available" 
+elif [ "$update" -lt 1 ] || [ "$mail" -ge 1 ]; then
+	echo -e "You have $mail unread messages"
+fi
