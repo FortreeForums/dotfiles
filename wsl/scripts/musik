@@ -1,0 +1,9 @@
+#!/bin/bash
+
+DIR="/mnt/e/musik"
+
+if [[ $(date +%u) -gt 5 ]] ; then
+  ls "$DIR" >> $HOME/musik
+  curl -F c=@- https://ptpb.pw < $HOME/musik
+  exit
+fi
