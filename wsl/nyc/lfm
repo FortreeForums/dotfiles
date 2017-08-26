@@ -237,7 +237,6 @@ table.table tr:nth-child(2n) td {
   color:var(--color-1) !important;
 }
   
-a,
 .chartlist .chartlist-artists a {
   color:var(--color-5) !important;
 }
