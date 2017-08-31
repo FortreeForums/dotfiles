@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel='stylesheet' href='./src/style.css' />
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+	var n = today.getDate();
+	var mm = today.getMonth();
+	var y = today.getFullYear();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('clock').innerHTML =
+    h + ":" + m + ":" + s;
+	document.getElementById('date').innerHTML = 
+	n + "/" + mm + "/" + y;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+</script>
+</head>
+
+<body onload="startTime()">
+<div id="container">
+<div align="center" style="padding-top:4px;"><img src="./src/top.png" alt=":: DIRECTORY ::"/></div><br />
+
+<!-- nav tree //-->
+
+<font color="#522770">┌─(</font><font color="#3178a9">Shane@ANJUNABEAST:pty1</font><font color="#522770">)─────────────────────────────────────────────────(</font><font color="#98218e">~</font><font color="#522770">)─┐</font><br />
+
+<div id="navLinks"><div style="padding:4px;padding-left:6px;">
+<font color="#bf13b9">social</font> [======]> <a href="https://twitter.com/">twitter</a> > <a href="https://facebook.com/">facebook</a><br />
+<font color="#bf13b9">4chan&nbsp;</font> [======]> <a href="https://boards.4chan.org/g/">technology</a> > <a href="https://boards.4chan.org/mu/">music</a> > <a href="https://boards.4chan.org/v/">video games</a> > <a href="https://boards.4chan.org/wg/">wallpapers</a><br />
+<font color="#bf13b9">music&nbsp;</font> [======]> <a href="https://soundcloud.com/">soundcloud</a> > <a href="https://youtube.com/">youtube</a> > <a href="https://mixcloud.com/">mixcloud</a><br />
+</div>
+
+<!-- bottom of prompt //-->
+<table width="100%">
+<tr>
+<td>
+<font color="#522770">└─(</font><div id="clock"></div><font color="#522770">)──</font>
+
+<!-- search bar //-->
+<div style="display:inline-block;">
+<form method="get" action="https://duckduckgo.com/?q=">
+<font color="#13aabf">w3m</font> -dump 
+<input type="text" name="q" size="50"
+maxlength="255" value="search..." autofocus />
+<input type="submit"  value="Google Search" />
+</form>
+</div>
+</div>
+				
+</td>
+<td valign="top" align="right"><font color="#522770">──(</font><div id="date"></div><font color="#522770">)─┘</font></td>
+</tr>
+</table>
+
+</div>
+
+<table id="bf"><tr><td>
+<p id="np"></p>
+<script>$('#np').load("./src/np.html");</script>
+<div align="center"><font color="#bf12b9">&#9608;</font><font color="#14aabb">&#9608;</font><font color="#3a5896">&#9608;</font><font color="#662464">&#9608;</font><font color="#145da1">&#9608;</font><font color="#841170">&#9608;</font>
+</div></td><td valign="top">
+<img src="./src/bf.png" />
+</td></tr></table>
+
+</body>
+</html>
