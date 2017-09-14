@@ -1,0 +1,11 @@
+#!/bin/bash
+
+time=$(date +"%d-%m-%Y_%H-%M-%S")
+target="/home/shane/dtop"
+
+cd /mnt/c/Users/Shane
+
+/mnt/c/Windows/nircmd.exe cmdwait 3000 savescreenshotfull "Screenshot_at_$time.png" | echo -e '\nTaking shot in 3... 2... 1...'
+cp ./"Screenshot_at_$time.png" $target;rm ./"Screenshot_at_$time.png"
+
+cd ~
