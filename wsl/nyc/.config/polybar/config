@@ -112,7 +112,7 @@ format-prefix-foreground = #bc7374
 exec = ~/scripts/update
 
 [bar/vortex]
-width = 50%
+width = 2550
 height = 24
 offset-x=0
 offset-y=0
@@ -141,7 +141,7 @@ font-4 = artwiz cure:pixelsize=10:antialias=false;1
 font-5 = FontAwesome:pixelsize=10:antialias=false;1
 
 modules-left = notify
-modules-center = mpd love
+modules-center = musik love
 modules-right = volume cpu memory weather date lock
 
 tray-position = right
@@ -157,54 +157,11 @@ format-prefix-foreground = #2ae1df
 exec = echo " "
 click-left = ~/scripts/lock_poly
 
-[module/mpd]
-type = internal/mpd
-host = 127.0.0.1
-port = 6600
-interval = 2
-format-prefix = ⏵
-format-prefix-foreground = #BF139E
-; Available tags:
-;   <label-song> (default)
-format-online = <label-song> <bar-progress>
-;format-playing = ${self.format-online}
-;format-paused = ${self.format-online}
-;format-stopped = ${self.format-online}
-
-; Available tags:
-;   <label-offline>
-;format-offline = <label-offline>
-
-; Available tokens:
-;   %artist%
-;   %album%
-;   %date%
-;   %title%
-; Default: %artist% - %title%
-label-song = %artist% - %title%
-
-; Available tokens:
-;   %elapsed%
-;   %total%
-; Default: %elapsed% / %total%
-;label-time = %elapsed% / %total%
-
-; Available tokens:
-;   None
-label-offline = 🎜 mpd is offline
-
-; Used to display the state of random/repeat/repeatone
-; Only applies if <icon-[random|repeat|repeatone]> is used
-toggle-on-foreground = #ff
-toggle-off-foreground = #55
-
-; Only applies if <bar-progress> is used
-bar-progress-width = 10
-bar-progress-indicator = ◈
-bar-progress-fill = ◆
-bar-progress-empty = ◇
-bar-progress-empty-foreground = #256f8a
-bar-progress-fill-foreground = #bc7374
+[module/musik]
+type = custom/script
+interval = 10
+format = <label>
+exec = ~/scripts/np
 
 [module/weather]
 type = custom/script
