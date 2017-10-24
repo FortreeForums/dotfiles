@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if pgrep -x "spotify" > /dev/null
+then
+	xwininfo -root -tree | grep "Spotify" | cut -d '"' -f2 | head -n1
+elif pgrep -x "ncmpcpp" > /dev/null
+then
+	echo "$(mpc current)"
+fi
