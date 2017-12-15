@@ -1,0 +1,13 @@
+#!/bin/bash
+
+NAME="RennOfTheMill"
+TYPE="7day"
+SIZE="5x5"
+CAPTION="true"
+IMGDIR="/mnt/c/Users/Shane/collage.jpg"
+
+echo -e "\nGenerating Last.FM collage..."
+
+curl -s "http://www.tapmusic.net/collage.php?user=$NAME&type=$TYPE&size=$SIZE&caption=$CAPTION" -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en-US,en;q=0.9' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' -H 'Referer: http://www.tapmusic.net/' -H 'Cookie: __atuvc=1%7C50; __atuvs=5a3411deb0f7af02000; __utma=184392355.250348585.1513361887.1513361887.1513361887.1; __utmc=184392355; __utmz=184392355.1513361887.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utmt=1; __utmb=184392355.1.10.1513361887' -H 'Connection: keep-alive' --compressed > $IMGDIR 
+
+echo -e "\nYour Last.FM collage has been saved at $IMGDIR"
