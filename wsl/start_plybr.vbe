@@ -1,0 +1,3 @@
+Set wslShell = CreateObject("WScript.Shell")
+wslShell.Run "bash -c ""cd ~ && DISPLAY=:0 polybar vortex""", 0
+Set wslShell = Nothing
