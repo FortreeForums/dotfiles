@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# download an album on slsk and use this
+# script to create an entry in your library
+# and copy the download over
+
+DIR="/mnt/c/Users/USERNAME/Documents/Soulseek Downloads/complete" # soulseek dl folder
+OUTPUTDIR="/mnt/f" # music library
+
+## user inputs {{
+read -p "Artist: " ARTIST
+read -p "Album: " ALBUM
+read -p "Year: " YEAR
+## }}
+
+## create entry in library {{
+if [ ! -d "$OUTPUTDIR/$ARTIST/\[$YEAR\] $ALBUM" ]; then
+	mkdir -p "$OUTPUTDIR/$ARTIST/[$YEAR] $ALBUM"
+fi
+## }}
+
+## copy dl over {{
+cd "${DIR}"
+cd *"${ALBUM}" && cp -r ./* "${OUTPUTDIR}/${ARTIST}/[${YEAR}] ${ALBUM}"
+cd ..
+rm -rf *"${ALBUM}"
+## }}
