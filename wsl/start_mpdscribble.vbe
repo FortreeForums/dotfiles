@@ -1,0 +1,3 @@
+Set wslShell = CreateObject("WScript.Shell")
+wslShell.Run "ubuntu.exe -c ""mpdscribble""", 0
+Set wslShell = Nothing
