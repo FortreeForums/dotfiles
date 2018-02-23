@@ -1,4 +1,0 @@
-#!/bin/bash
-
-cd "/mnt/c/Users/Shane/"
-/mnt/c/Windows/System32/nircmd.exe savescreenshotfull 'screen.png';$HOME/scripts/lock
