@@ -4,24 +4,49 @@
 # script to create an entry in your library
 # and copy the download over
 
-DIR="/mnt/c/Users/USERNAME/Documents/Soulseek Downloads/complete" # soulseek dl folder
+SLSKDIR="/mnt/c/Users/Shane/Documents/Soulseek Downloads/complete" # soulseek dl folder
+#BRWSRDIR="/mnt/i/E - Downloads" # downloads folder
 OUTPUTDIR="/mnt/f" # music library
 
 ## user inputs {{
-read -p "Artist: " ARTIST
-read -p "Album: " ALBUM
-read -p "Year: " YEAR
+input() {
+	read -rp "Artist: " ARTIST
+	read -rp "Album: " ALBUM
+	read -rp "Year: " YEAR
+}
 ## }}
 
 ## create entry in library {{
-if [ ! -d "$OUTPUTDIR/$ARTIST/\[$YEAR\] $ALBUM" ]; then
-	mkdir -p "$OUTPUTDIR/$ARTIST/[$YEAR] $ALBUM"
-fi
+mkDIR() {
+	if [ ! -d "$OUTPUTDIR/$ARTIST/\\[$YEAR\\] $ALBUM" ]; then
+		mkdir -p "$OUTPUTDIR/$ARTIST/[$YEAR] $ALBUM"
+	fi
+}
 ## }}
 
-## copy dl over {{
-cd "${DIR}"
-cd *"${ALBUM}" && cp -r ./* "${OUTPUTDIR}/${ARTIST}/[${YEAR}] ${ALBUM}"
-cd ..
-rm -rf *"${ALBUM}"
+## decide how to copy files over based on user input option
+while [ ! $# -eq 0 ]
+do
+	case "$1" in
+	--slsk)
+		input
+		mkDIR
+		cd "${SLSKDIR}" || return
+		cd *"${ALBUM}"* && cp -r ./* "${OUTPUTDIR}/${ARTIST}/[${YEAR}] ${ALBUM}"
+		cd ..
+		rm -rf *"${ALBUM}"*
+	;;
+#	--browser)
+#		cd "${BRWSRDIR}"
+#		extract *"${ALBUM}"* cd *"${ALBUM}"*
+#		cd ..
+#		rm -rf *"${ALBUM}"*
+#	;;
+	*)
+		echo -e "\\n	--slsk					use slsk dir\\n
+	--browser				use browser dir\\n"
+	;;
+    esac
+    shift
+done	
 ## }}
