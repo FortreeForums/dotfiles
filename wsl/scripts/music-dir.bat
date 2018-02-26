@@ -2,9 +2,9 @@
 
 @echo off
 
-set DIR=C:\Users\USERNAME\Music
-set FILE=%DIR%output.txt
-set TMP=%DIR%tmp.txt
+set DIR=C:\Users\USERNAME\Desktop
+set FILE=output.txt
+set TMP=tmp.txt
 
 if exist %FILE% (
     del %FILE%
