@@ -4,49 +4,83 @@
 # script to create an entry in your library
 # and copy the download over
 
+## variables {{
 SLSKDIR="/mnt/c/Users/Shane/Documents/Soulseek Downloads/complete" # soulseek dl folder
-#BRWSRDIR="/mnt/i/E - Downloads" # downloads folder
+BRWSRDIR="/mnt/i/E-Downloads" # downloads folder
 OUTPUTDIR="/mnt/f" # music library
+TMP="./tmp.txt" # temp file containing probed tags
+## }}
 
 ## user inputs {{
 input() {
-	read -rp "Artist: " ARTIST
 	read -rp "Album: " ALBUM
-	read -rp "Year: " YEAR
+}
+## }}
+
+## fetch info from ID3 tags {{
+probe() {
+	ffprobe "$(find ./*.mp3 | head -n1)" 2>&1 | grep -w "artist\\|date" | head -n2 | sed 's/    date            : //g;s/    artist          : //g' >> $TMP
+	ARTIST=$(sed '1q;d' "${TMP}")
+	YEAR=$(sed '2q;d' "${TMP}")
 }
 ## }}
 
 ## create entry in library {{
 mkDIR() {
 	if [ ! -d "$OUTPUTDIR/$ARTIST/\\[$YEAR\\] $ALBUM" ]; then
-		mkdir -p "$OUTPUTDIR/$ARTIST/[$YEAR] $ALBUM"
+		mkdir -p "${OUTPUTDIR}/${ARTIST}/[${YEAR}] ${ALBUM}"		
 	fi
 }
 ## }}
 
-## decide how to copy files over based on user input option
+## extract archive {{
+extract() {
+	find ./ -iname "*${ALBUM}*.zip" -print0 | while IFS= read -r -d ''; do
+		unzip ./*"${ALBUM}"*.zip
+		rm -rf ./*"${ALBUM}"*.zip
+	done
+	find ./ -iname "*${ALBUM}*.rar" -print0 | while IFS= read -r -d ''; do
+		unrar x -ad ./*"${ALBUM}"*.rar
+	done
+}
+## }}
+
+## decide how to copy files over based on user input option {{
 while [ ! $# -eq 0 ]
 do
 	case "$1" in
 	--slsk)
 		input
+		cd "${SLSKDIR}" || { echo "Could not find Soulseek directory!"; return 1; }
+		cd ./*"${ALBUM}"* || return && echo "Could not find ${ALBUM}!"
+		probe
 		mkDIR
-		cd "${SLSKDIR}" || return
-		cd *"${ALBUM}"* && cp -r ./* "${OUTPUTDIR}/${ARTIST}/[${YEAR}] ${ALBUM}"
+		cp -r ./* "${OUTPUTDIR}/${ARTIST}/[${YEAR}] ${ALBUM}"
+		rm "${OUTPUTDIR}/${ARTIST}/[${YEAR}] ${ALBUM}/${TMP}"
 		cd ..
-		rm -rf *"${ALBUM}"*
+		rm -rf ./*"${ALBUM}"*
 	;;
-#	--browser)
-#		cd "${BRWSRDIR}"
-#		extract *"${ALBUM}"* cd *"${ALBUM}"*
-#		cd ..
-#		rm -rf *"${ALBUM}"*
-#	;;
+	--browser)
+		input
+		cd "${BRWSRDIR}" || { echo "Could not find Download directory!"; return 1; }	
+		extract
+		cd ./*"${ALBUM}"* || { echo "Could not find find ${ALBUM}!"; return 1; }
+		probe
+		mkDIR
+		cp -r ./* "${OUTPUTDIR}/${ARTIST}/[${YEAR}] ${ALBUM}"
+		rm "${OUTPUTDIR}/${ARTIST}/[${YEAR}] ${ALBUM}/${TMP}"
+		cd ..
+		rm -rf ./*"${ALBUM}"*
+	;;
+	--help)
+		echo -e "\\n	--slsk			select soulseek dl folder"
+		echo -e "\\n	--browser		select web browser dl folder"
+		echo -e "\\n	--flac2mp3		convert flac files to mp3"
+	;;
 	*)
-		echo -e "\\n	--slsk					use slsk dir\\n
-	--browser				use browser dir\\n"
+		echo -e "\\nWelcome to muDL, please see --help for details\\n"
 	;;
-    esac
+  	esac
     shift
 done	
 ## }}
