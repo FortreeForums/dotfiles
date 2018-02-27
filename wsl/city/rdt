@@ -1,0 +1,332 @@
+/* VARIABLES */
+:root {
+  --header-bg:#000508;
+  --body-bg:#000203;
+  --color-main:#cfc8b1;
+  --color-1:#01516f;
+  --color-2:#016d72;
+  --color-3:#444358;
+  --color-4:#53727d;
+  --color-5:#17678b;
+  --color-6:#109d98;
+  --border-on:1px solid;
+  --border-off:none;
+  --font-family:'MonteCarlo';
+  --font-size:15px;
+}
+
+
+/* HIDE ELEMENTS */
+
+.dPHsPg,
+.goldvertisement .inner,
+.sidecontentbox,
+.grippy,
+body.with-listing-chooser .listing-chooser.initialized,
+.sidebox .spacer,
+.goldvertisement,
+.infobar.profilebetabar,
+#header-img.default-header,
+.trending-subreddits,
+.expando-button,
+.footer-parent,
+.RESSubscriptionButton,
+.debuginfo,
+.titlebox .md-container {
+	display:none !important;
+}
+
+/* BODY */
+body {
+	background:var(--body-bg) !important;
+	margin:0px auto !important;
+	font-family:var(--font-family) !important;
+	font-size:var(--font-size) !important;
+	font-weight:normal !important;
+	color:var(--color-main) !important;
+	z-index:0 !important;
+}
+
+a {
+	color:var(--color-4) !important;
+}
+
+code,
+.linkinfo {
+	font-family:var(--font-family) !important;
+}
+
+.side {
+	margin:25% 5px 0 5px !important;
+	right:0 !important;
+	background:var(--header-bg) !important;
+	position:fixed !important;
+}
+
+.morelink,
+.infobar {
+	background:transparent !important;
+	background-image:none !important;
+	font-family:var(--font-family) !important;
+	font-size:var(--font-size) !important;
+	font-weight:normal !important;
+	border:var(--border-on) var(--color-1) !important;
+}
+
+.morelink a {
+	color:var(--color-1) !important;
+}
+
+.morelink .nub {
+	background:transparent !important;
+	background-image:none !important;
+}
+
+.linkinfo,
+.archived-infobar,
+.server-seconds,
+.NERPageMarker,
+#progressIndicator,
+.RESDialogSmall > h3,
+.RESDialogSmall {
+	background:transparent !important;
+	border:var(--border-on) var(--color-2) !important;
+	border-radius:0px !important;
+	color:var(--color-main) !important;
+}
+
+.res-fancy-toggle-button, 
+span.multi-count {
+	background-image:none !important;
+	background:transparent !important;
+	border:var(--border-on) var(--color-2) !important;
+}
+
+
+
+.linkinfo .score .word,
+.linkinfo .score .number {
+	color:var(--color-2) !important;
+}
+
+#search input[type="text"],
+textarea,
+.linkinfo .shortlink input {
+	border:var(--border-on) var(--color-2) !important;
+	background:var(--body-bg) !important;
+	font-family:var(--font-family) !important;
+	font-size:var(--font-size) !important;
+	color:var(--color-2) !important;
+}
+
+.RES-keyNav-activeElement, 
+.RES-keyNav-activeElement .md-container {
+	background:var(--header-bg) !important;
+}
+
+/* HEADER */
+#header {
+	background:var(--header-bg) !important;
+	border-bottom:var(--border-off) !important;
+}
+
+#sr-header-area a.RESShortcutsCurrentSub,
+#RESSubredditGroupDropdown .RESShortcutsCurrentSub a {
+	color:var(--color-1) !important;
+}
+
+#sr-header-area,
+#header-bottom-right,
+.tabmenu li a {
+	background:var(--body-bg) !important;
+	border:var(--border-off) !important;
+	font-weight:normal !important;
+}
+
+#RESShortcutsEditContainer,
+#RESShortcutsSort,
+#RESShortcutsRight,
+#RESShortcutsLeft,
+#RESShortcutsAdd {
+	background:var(--header-bg) !important;
+}
+
+.sr-bar a {
+	color:var(--color-3) !important;
+	font-weight:normal !important;
+	font-size:var(--font-size) !important;
+	font-family:var(--font-family)!important;
+}
+
+.pinnable-content.pinned {
+    	background:var(--header-bg) !important;   	
+}
+
+/* CONTENT */
+.thing .title {
+	color:var(--color-2) !important;
+}
+
+.flair, .linkflairlabel {
+	background:var(--header-bg) !important;
+	/*border:var(--border-on) var(--color-4) !important;*/
+	border:var(--border-off) !important;
+	color:var(--color-4) !important;
+}
+
+.link .usertext-body .md,
+.titlebox form.toggle, 
+.leavemoderator,
+.usertext.border .usertext-body {
+	background:var(--header-bg) !important;
+	border:var(--border-off) !important;
+}
+
+.titlebox h1 a {
+	color:var(--color-5) !important;
+}
+
+.domain a {
+	color:var(--color-6) !important;
+}
+
+.entry .buttons li a {
+	color:var(--color-1) !important;
+}
+
+.md {
+	color:var(--color-main) !important;
+}
+
+.md pre {
+	background:transparent !important;
+	border-radius:0px !important;
+	/* border:var(--border-on) var(--color-1) !important; */
+	border:var(--border-off) !important;
+	color:var(--color-1) !important;
+}
+
+.md hr {
+	background:var(--color-3) !important;
+}
+
+.usertext.grayed .usertext-body {
+	background:transparent !important;
+	color:var(--color-6) !important;
+}
+
+.md blockquote,
+.comment .child, 
+.comment .showreplies {
+	border-left:2px dotted var(--color-2) !important;
+}
+
+.voteWeight {
+	background:transparent !important;
+}
+
+.markdownEditor .edit-btn:not(.btn-macro) {
+	background-color:transparent !important;
+	border:var(--border-on) var(--color-3) !important;
+	background-image:url("https://i.imgur.com/6HPZYhr.png") !important;
+}
+
+.res-voteEnhancements-colorLinkScore-user .link .rank {
+	color:rgba(0,0,0,0) !important;
+	border-radius:1px !important;
+	margin-right:-20px !important;
+}
+
+.midcol {
+	margin-left:-2px !important;
+	margin-top:-1px !important;
+}
+
+.subreddit .usertext .md {
+	background:transparent !important;
+	border:var(--border-off) !important;
+}
+
+.fancy-toggle-button .remove a {
+    color:#000 !important;
+}
+
+.fancy-toggle-button .remove {
+    background:transparent !important;
+    padding:5px !important;
+    border:var(--border-on) var(--color-3) !important;
+}
+
+.fancy-toggle-button .add {
+    background-image:none !important;
+    padding:5px !important;
+    border:var(--border-on) var(--color-3) !important;
+}
+
+.res-userHighlight .tagline .author.moderator, 
+.res-userHighlight .crosspost-preview-tagline .author.moderator {
+    color:var(--color-2) !important;
+    background:transparent !important;
+}
+
+.res-userHighlight .tagline .author.submitter, 
+.res-userHighlight .crosspost-preview-tagline .author.submitter {
+    color:var(--color-3) !important;
+    background:transparent !important;
+}
+
+.res-userHighlight .tagline .author.friend, 
+.res-userHighlight .crosspost-preview-tagline .author.friend {
+    color:var(--color-4) !important;
+    background:transparent !important;
+}
+
+/* FONT SIZES */
+
+.tagline, .search-result-meta,
+.domain,
+.linkflairlabel,
+.link .midcol,
+.entry .buttons li a,
+#sr-header-area,
+.comment .title,
+.comment .author,
+.md-container,
+.md-container-small .md, 
+.side .md,
+.usertext,
+.res-voteEnhancements-highlightScores span.score,
+.titlebox .bottom,
+.server-seconds-public .note,
+.titlebox .karma,
+.giftgold a,
+.karma-breakdown a,
+.server-seconds em,
+.fancy-toggle-button .active,
+.res-fancy-toggle-button, 
+span.multi-count,
+.res-fancy-toggle-button,
+.link .flair,
+.res-commentNavToggle,
+.usertext .help-toggle, 
+.usertext a.reddiquette,
+.linkinfo .score .word,
+.linkinfo .score .number,
+#RESConsoleContainer,
+.optionTitle,
+.optionKey,
+.NERPageMarker,
+#progressIndicator,
+.titlebox h1,
+.RESDialogSmall,
+.RESDialogSmall > h3,
+.res-userHighlight .tagline .author.friend, 
+.res-userHighlight .crosspost-preview-tagline .author.friend,
+.search-comments,
+.combined-search-page > .content,
+.tagline, .search-result-meta {
+	font-size:var(--font-size) !important;
+	font-weight:normal !important;
+	font-style:normal !important;
+	font-family:var(--font-family) !important;
+}
