@@ -1,0 +1,63 @@
+! main colors {{
+*background: #0a100e
+*foreground: #ccccce
+! Black + DarkGrey
+*color0:  #060108
+*color8:  #666666
+! DarkRed + Red
+*color1:  #01516f
+*color9:  #01516f
+! DarkGreen + Green
+*color2:  #016d72
+*color10: #016d72
+! DarkYellow + Yellow
+*color3:  #444358
+*color11: #444358
+! DarkBlue + Blue
+*color4:  #53727d
+*color12: #53727d
+! DarkMagenta + Magenta
+*color5:  #17678b
+*color13: #17678b
+! DarkCyan + Cyan
+*color6:  #109d98
+*color14: #109d98
+! LightGrey + White
+*color7:  #d5d8df
+*color15: #d5d8df
+! }}
+
+! URxvt {{
+URxvt*font: xft:MonteCarlo:size=12
+URxvt*boldFont: xft:MonteCarlo:size=12
+URxvt.italicFont: xft:MonteCarlo:size=12
+URxvt.boldItalicFont: xft:MonteCarlo:size=12
+URxvt.geometry: 80x30
+URxvt.saveLines: 10000
+URxvt.cutchars: "()*,<>[]{}|''"
+URxvt.perl-ext-common: default,matcher,searchable-scrollback,selection-to-clipboard
+URxvt.selection-autotransform.0: s/^([^:[:space:]]+):(\\d+):?$/+$2 \\Q$1\\E/
+URxvt.skipBuiltinGlyphs: false
+URxvt.url-launcher: "/mnt/c/Program Files/Waterfox/waterfox.exe"
+URxvt.url-select.underline: true
+URxvt.url-select.launcher: "/mnt/c/Program Files/Waterfox/waterfox.exe"
+! URxvt.internalBorder: 10 - 10px padding
+URxvt*colorUL: #444358
+URxvt.scrollBar: false
+URxvt.visualBell: true
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: true
+URxvt.cursorColor:#01516f
+URxvt*title: ricu~
+URxvt*lineSpace: -1
+URxvt.imLocale: en_US.UTF-8
+! }}
+
+! Font settings {{
+Xft.hintstyle:              hintnone
+Xft.hinting:                0
+Xft.antialias:              0
+Xft.rgba:                   rgb
+Xft.lcdfilter:              lcddefault
+Xft.dpi: 96
+! }}
