@@ -1,0 +1,190 @@
+;  ▄▄▄·▄▄▌   ▄· ▄▌▄▄▄▄· ▄▄▄  
+; ▐█ ▄███•  ▐█▪██▌▐█ ▀█▪▀▄ █·
+;  ██▀·██▪  ▐█▌▐█▪▐█▀▀█▄▐▀▀▄ 
+; ▐█▪·•▐█▌▐▌ ▐█▀·.██▄▪▐█▐█•█▌
+; .▀   .▀▀▀   ▀ • ·▀▀▀▀ .▀  ▀
+;    by vortex !NOiDx.cCl2
+
+[colors]
+background = ${xrdb:background}
+background-alt = ${xrdb:background}
+foreground = #DDDDDD
+foreground-alt = #548587
+fg-1 = #BF139E
+fg-2 = #ffd494
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/notification]
+width = 8%
+height = 24
+offset-x = 1995
+;offset-x = 1240
+fixed-center = false
+
+background = ${xrdb:background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 10
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = MonteCarlo:pixelsize=12:antialias=false;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=10:antialias=false;1
+font-3 = Unifont Upper:fontformat=truetype:size8:antialias=false;0
+font-4 = artwiz cure:pixelsize=10:antialias=false;1
+font-5 = FontAwesome:pixelsize=10:antialias=false;1
+
+modules-left = 
+modules-center = notify
+modules-right = 
+
+tray-position = right
+tray-padding = 2
+
+[module/notify]
+type = custom/script
+interval = 10
+format = <label>
+format-prefix = ">> "
+format-prefix-foreground = ${xrdb:color2}
+exec = ~/scripts/update
+
+[bar/vortex]
+width = 2550
+height = 24
+offset-x=0
+offset-y=0
+fixed-center = false
+
+background = ${xrdb:background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 8
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = MonteCarlo:pixelsize=12:antialias=false;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=10:antialias=false;1
+font-3 = Unifont Upper:fontformat=truetype:size1:antialias=false;0
+font-4 = artwiz cure:pixelsize=10:antialias=false;1
+font-5 = FontAwesome:pixelsize=10:antialias=false;1
+
+modules-left = notify
+modules-center = musik love
+modules-right = volume cpu memory weather date custom-menu
+
+tray-position = right
+tray-padding = 2
+
+;[module/lock]
+[module/custom-menu]
+type = custom/script
+interval = 2
+format = <label>
+;format-prefix = "🔒"
+format-prefix = "☰"
+format-prefix-foreground = ${xrdb:color6}
+exec = echo " "
+;click-left = ~/scripts/lock_poly
+click-left = ~/scripts/custom-menu
+
+[module/musik]
+type = custom/script
+exec = "python3 ~/scripts/now_playing.py"
+tail = true
+format = <label>
+
+[module/weather]
+type = custom/script
+interval = 10
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${xrdb:color1}
+exec = ~/.config/polybar/weather
+
+[module/love]
+type = custom/script
+interval = 2
+format = <label>
+format-prefix = "❤"
+format-prefix-foreground = ${xrdb:color3}
+exec = echo " "
+click-left = /bin/love
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "ܭ "
+format-prefix-foreground = ${xrdb:color4}
+label = %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "ᚎ "
+format-prefix-foreground = ${xrdb:color2}
+label = %percentage_used%%
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %d/%m (%a)"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = ɸ
+format-prefix-foreground = ${xrdb:color5}
+
+label = %date% %time%
+
+[module/volume]
+type = internal/volume
+
+format-volume = <label-volume> <bar-volume>
+label-volume = "🔊"
+label-volume-foreground = #90233f
+
+format-muted-foreground = #90233f
+label-muted = "🔇"
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #bc7374
+bar-volume-foreground-1 = #bc7374
+bar-volume-foreground-2 = #bc7374
+bar-volume-foreground-3 = #A32149
+bar-volume-foreground-4 = #55b9b0
+bar-volume-foreground-5 = #2ae1df
+bar-volume-foreground-6 = #2ae1df
+bar-volume-gradient = true
+bar-volume-indicator = 
+bar-volume-indicator-font = 2
+bar-volume-fill = 
+bar-volume-fill-font = 2
+bar-volume-empty = ·
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = #666666
+
+; vim:ft=dosini
