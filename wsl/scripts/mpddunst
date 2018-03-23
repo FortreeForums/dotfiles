@@ -1,15 +1,21 @@
 #!/bin/bash
 
 ## variables {{
-OUTPUT_ART="/tmp/cover.png"
-ART_WIDTH="80x80"
 MDIR="/mnt/f/"
 FILE="$(mpc current -f %file% | sed -e 's/%20/ /g;s/%5B/[/g;s/%5D/]/g')"
 FILE="${FILE/local:track:}"
 FILENAME="${MDIR}${FILE}"
+
+OUTPUT_ART="/tmp/cover.png"
+ART_WIDTH="80x80"
+
 SDIR="$(dirname "$FILENAME" | head -n1)"
 IMG_NAME="(cover|folder|front|art)\.(jpg|png|gif)$"
 FIND="$(find "$SDIR/" -maxdepth 1 -type f | egrep -i -m1 "$IMG_NAME")"
+
+TITLE="$(mpc current -f %title%)"
+ARTIST="$(mpc current -f %artist%)"
+SUMMARY="$(echo -e "$ARTIST\n$TITLE")"
 ## }}
 
 ## if cover doesn't exist, extract one using ffmpeg 
@@ -25,5 +31,5 @@ mogrify -resize "$ART_WIDTH" "$OUTPUT_ART"
 ## }}
 
 ## pipe the info to dunst {{
-notify-send -u normal "Now Playing" "$(mpc current)" -i $OUTPUT_ART
+notify-send -u normal "Now Playing" "$SUMMARY" -i $OUTPUT_ART
 ## }}
