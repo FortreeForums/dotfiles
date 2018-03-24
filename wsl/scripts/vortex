@@ -1,0 +1,64 @@
+#!/bin/bash
+
+# win10 sysinfo
+# written by vortex !NOiDx.cCl2
+#
+# term detection copied from neofetch's wm detection
+# https://github.com/dylanaraps/neofetch
+#
+
+## set variables and parse outputs {{
+os="win 10"
+kernel=`uname -r`
+kernel="${kernel/-Microsoft}"
+term="$(ps -aux | grep -m 1 -o -F -e "urxvt" -e "mintty" -e "xterm" -e "console2")"
+shell=`echo $SHELL`
+shell="${shell/\/bin\/}"
+cpu=`less /proc/cpuinfo | grep 'model name' | head -n 1`
+cpu="${cpu/model name	: }"
+cpu="${cpu/Intel(R) Core(TM) }"
+cpu="${cpu/CPU }"
+cpu="${cpu/@ 3.50GHz}"
+ram=`grep MemTotal /proc/meminfo | awk '$3=="kB"{$2=$2/1024**2;$3="GB";} 1 {printf("%.0f %.0f"$3"\n"), $1, $2;}'`
+ram="${ram/0 }"
+clr="$1"
+## }}
+
+# set colors {{
+initializeANSI()
+{
+  esc=""
+  red="${esc}[31m";
+  lred="${esc}[91m";  
+  green="${esc}[32m";
+  lgreen="${esc}[92m";  
+  yellow="${esc}[33m";
+  lyellow="${esc}[93m";  
+  blue="${esc}[34m";
+  lblue="${esc}[94m";
+  magenta="${esc}[35m";
+  lmagenta="${esc}[95m";  
+  cyan="${esc}[36m";
+  lcyan="${esc}[96m";
+  white="${esc}[97m";  
+  reset="${esc}[0m"
+}
+## }}
+
+## begin printing ASCII and info {{
+initializeANSI
+
+cat << EOF 
+
+
+
+
+          ${lcyan} ▌ ▐·      ▄▄▄  ▄▄▄▄▄▄▄▄ .▐▄• ▄     ${blue}>> os:${reset} $os
+          ${lcyan}▪█·█▌▪     ▀▄ █·•██  ▀▄.▀· █▌█▌▪    ${lred}>> kernel:${reset} $kernel
+          ${lcyan}▐█▐█• ▄█▀▄ ▐▀▀▄  ▐█.▪▐▀▀▪▄ ·██·     ${green}>> term:${reset} $term / $shell
+          ${lcyan} ███ ▐█▌.▐▌▐█•█▌ ▐█▌·▐█▄▄▌▪▐█·█▌    ${yellow}>> cpu:${reset} $cpu
+          ${lcyan}. ▀   ▀█▄▀▪.▀  ▀ ▀▀▀  ▀▀▀ •▀▀ ▀▀    ${magenta}>> ram:${reset} $ram
+
+				    ${lgreen}•${lyellow}•${lblue}•${lmagenta}•${lcyan}•${lwhite}•${lred}•${reset}
+EOF
+## }}
