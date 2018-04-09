@@ -11,6 +11,24 @@ OUTPUTDIR="/mnt/f" # music library
 TMP="./tmp.txt" # temp file containing probed tags
 ## }}
 
+## disable case sensitivity {{
+shopt -s nocaseglob
+## }}
+
+## check for dependencies {{
+if [[ "$(dpkg -s ffmpeg 2&>1 >/dev/null)" ]]; then
+   while true; do
+	echo "FFmpeg is required, but not installed."
+	read -p "Do you wish to install it now?" YN
+	   case $YN in
+		[yY]* ) sudo apt-get install ffmpeg; break;;
+		[nN]* ) echo "Chose not to install dependencies. Terminating."; exit;;
+		    * ) echo "Invalid input, please answer \"y\" or \"n\".";;
+	   esac
+   done
+fi	
+## }}
+
 ## user inputs {{
 input() {
 	read -rp "Album: " ALBUM
@@ -20,7 +38,7 @@ input() {
 ## fetch info from ID3 tags {{
 probe() {
 	ffprobe "$(find ./*.mp3 | head -n1)" 2>&1 | grep -w "artist\\|date" | head -n2 | sed 's/    date            : //g;s/    artist          : //g' >> $TMP
-	ARTIST=$(sed '1q;d' "${TMP}")
+	ARTIST=$(sed 's/ feat. .*//g;s/ (feat. .*)//g;1q;d' "${TMP}")
 	YEAR=$(sed '2q;d' "${TMP}")
 }
 ## }}
@@ -28,7 +46,7 @@ probe() {
 ## create entry in library {{
 mkDIR() {
 	if [ ! -d "$OUTPUTDIR/$ARTIST/\\[$YEAR\\] $ALBUM" ]; then
-		mkdir -p "${OUTPUTDIR}/${ARTIST}/[${YEAR}] ${ALBUM}"		
+		mkdir -p "${OUTPUTDIR}/${ARTIST}/[${YEAR}] ${ALBUM}"
 	fi
 }
 ## }}
@@ -46,13 +64,12 @@ extract() {
 ## }}
 
 ## decide how to copy files over based on user input option {{
-while [ ! $# -eq 0 ]
-do
+while [ ! $# -eq 0 ]; do
 	case "$1" in
 	--slsk)
 		input
 		cd "${SLSKDIR}" || { echo "Could not find Soulseek directory!"; return 1; }
-		cd ./*"${ALBUM}"* || return && echo "Could not find ${ALBUM}!"
+		cd ./*"${ALBUM}"* || { echo "Could not find ${ALBUM}!"; return 1; }
 		probe
 		mkDIR
 		cp -r ./* "${OUTPUTDIR}/${ARTIST}/[${YEAR}] ${ALBUM}"
@@ -72,10 +89,12 @@ do
 		cd ..
 		rm -rf ./*"${ALBUM}"*
 	;;
+	--flac2mp3)
+		echo "test successful"
+	;;
 	--help)
 		echo -e "\\n	--slsk			select soulseek dl folder"
 		echo -e "\\n	--browser		select web browser dl folder"
-		echo -e "\\n	--flac2mp3		convert flac files to mp3"
 	;;
 	*)
 		echo -e "\\nWelcome to muDL, please see --help for details\\n"
@@ -83,4 +102,8 @@ do
   	esac
     shift
 done	
+## }}
+
+## enable case sensitivity {{
+shopt -u nocaseglob
 ## }}
