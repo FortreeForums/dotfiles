@@ -4,6 +4,10 @@
 # script to create an entry in your library
 # and copy the download over
 
+# TODO
+
+# cd and mk each dir of the library individually to fix "/mnt/f/Artist: file exists"
+
 ## variables {{
 SLSKDIR="/mnt/c/Users/Shane/Documents/Soulseek Downloads/complete" # soulseek dl folder
 BRWSRDIR="/mnt/i/E-Downloads" # downloads folder
@@ -11,15 +15,11 @@ OUTPUTDIR="/mnt/f" # music library
 TMP="./tmp.txt" # temp file containing probed tags
 ## }}
 
-## disable case sensitivity {{
-shopt -s nocaseglob
-## }}
-
 ## check for dependencies {{
-if [[ "$(dpkg -s ffmpeg 2&>1 >/dev/null)" ]]; then
+if ! [ -x "$(command -v ffmpeg)" ]; then
    while true; do
 	echo "FFmpeg is required, but not installed."
-	read -p "Do you wish to install it now?" YN
+	read -rp "Do you wish to install it now? " YN
 	   case $YN in
 		[yY]* ) sudo apt-get install ffmpeg; break;;
 		[nN]* ) echo "Chose not to install dependencies. Terminating."; exit;;
@@ -29,38 +29,73 @@ if [[ "$(dpkg -s ffmpeg 2&>1 >/dev/null)" ]]; then
 fi	
 ## }}
 
+## disable case sensitivity {{
+shopt -s nocaseglob
+## }}
+
 ## user inputs {{
 input() {
-	read -rp "Album: " ALBUM
+read -rp "Album: " ALBUM
 }
 ## }}
 
 ## fetch info from ID3 tags {{
 probe() {
-	ffprobe "$(find ./*.mp3 | head -n1)" 2>&1 | grep -w "artist\\|date" | head -n2 | sed 's/    date            : //g;s/    artist          : //g' >> $TMP
-	ARTIST=$(sed 's/ feat. .*//g;s/ (feat. .*)//g;1q;d' "${TMP}")
-	YEAR=$(sed '2q;d' "${TMP}")
+ffprobe "$(find ./*.mp3 | head -n1)" 2>&1 | \
+grep -w "artist\\|date" | head -n2 | \
+sed 's/    date            : //g;s/    artist          : //g' >> $TMP
+
+ARTIST=$(sed 's/ feat. .*//g;s/ (feat. .*)//g;1q;d' "${TMP}")
+YEAR=$(sed '2q;d' "${TMP}")
+YEAR=${YEAR:0:4} # only print first 4 chars, which should be the year
 }
 ## }}
 
 ## create entry in library {{
 mkDIR() {
-	if [ ! -d "$OUTPUTDIR/$ARTIST/\\[$YEAR\\] $ALBUM" ]; then
-		mkdir -p "${OUTPUTDIR}/${ARTIST}/[${YEAR}] ${ALBUM}"
-	fi
+if [ ! -d "$OUTPUTDIR/$ARTIST/\\[$YEAR\\] $ALBUM" ]; then
+	mkdir -p "${OUTPUTDIR}/${ARTIST}/[${YEAR}] ${ALBUM}"
+fi
 }
 ## }}
 
 ## extract archive {{
 extract() {
-	find ./ -iname "*${ALBUM}*.zip" -print0 | while IFS= read -r -d ''; do
-		unzip ./*"${ALBUM}"*.zip
-		rm -rf ./*"${ALBUM}"*.zip
-	done
-	find ./ -iname "*${ALBUM}*.rar" -print0 | while IFS= read -r -d ''; do
-		unrar x -ad ./*"${ALBUM}"*.rar
-	done
+find ./ -iname "*${ALBUM}*.zip" -print0	| \
+while IFS= read -r -d ''; do
+	unzip ./*"${ALBUM}"*.zip
+	rm -rf ./*"${ALBUM}"*.zip
+done
+find ./ -iname "*${ALBUM}*.rar" -print0 | \
+while IFS= read -r -d ''; do
+	unrar x -ad ./*"${ALBUM}"*.rar
+done
 }
+## }}
+
+## convert from flac to mp3 320 {{
+flac2mp3() {
+for f in ./*.flac; do	
+   OUT="${f[*]/%flac/mp3}"
+   FLAC_ARTIST=$(metaflac "$f" --show-tag=ARTIST | sed 's/.*=//g')
+   FLAC_TITLE=$(metaflac "$f" --show-tag=TITLE | sed 's/.*=//g')
+   FLAC_ALBUM=$(metaflac "$f" --show-tag=ALBUM | sed 's/.*=//g')
+   FLAC_DATE=$(metaflac "$f" --show-tag=DATE | sed 's/.*=//g')
+
+   flac -c -d "$f" | lame -V0  --add-id3v2 --pad-id3v2 \
+   --ignore-tag-errors --ta "$FLAC_ARTIST" --tt "$FLAC_TITLE" \
+   --tl "$FLAC_ALBUM" --ty "$FLAC_DATE" - "$OUT"
+done
+
+while true; do     
+   read -rp "Do you want to remove *.flac files? " FLAC_YN
+      case $FLAC_YN in
+	[yY]* ) rm ./*.flac; break;;
+	[nN]* ) exit;;
+	    * ) echo "Please answer yes or no.";
+      esac
+done		
+}			
 ## }}
 
 ## decide how to copy files over based on user input option {{
@@ -90,11 +125,12 @@ while [ ! $# -eq 0 ]; do
 		rm -rf ./*"${ALBUM}"*
 	;;
 	--flac2mp3)
-		echo "test successful"
+		flac2mp3
 	;;
 	--help)
 		echo -e "\\n	--slsk			select soulseek dl folder"
 		echo -e "\\n	--browser		select web browser dl folder"
+		echo -e "\\n	--flac2mp3		convert flac files to mp3"
 	;;
 	*)
 		echo -e "\\nWelcome to muDL, please see --help for details\\n"
