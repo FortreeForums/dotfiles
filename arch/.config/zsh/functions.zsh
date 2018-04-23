@@ -1,11 +1,16 @@
 ## WIKIPEDIA SEARCH FUNCTION ##
-wikiSearch() {
+wiki() {
 echo -n -e "\n============================================\n\tWelcome to WikiPedia Search"; echo ""; i=1 ; for line in $(lynx --dump "http://en.wikipedia.org/w/index.php?title=Special%3ASearch&profile=default&search=$1&fulltext=Search" | grep http://en.wikipedia.org/wiki | cut -c7-); do echo $i $line; lines[$i]=$line ;  i=$(($i+1)); done ; echo -n -e "\n============================================\n\tPlease select the link to open - "; read answer; w3m ${lines[$answer]}
 }
 
 ## ARCHWIKI SEARCH FUNCTION ##
 archSearch() {
 echo -n -e "\n============================================\n\tWelcome to Arch Wiki Search"; echo ""; i=1 ; for line in $(lynx --dump "https://wiki.archlinux.org/index.php?title=Special%3ASearch&profile=default&search=$1" | grep https://wiki.archlinux.org/ | cut -c7-); do echo $i $line; lines[$i]=$line ; i=$(($i+1)); done ; echo -n -e "\n============================================\n\tPlease select the link to open - "; read answer; w3m ${lines[$answer]}
+}
+
+## RUTRACKER SEARCH FUNCTION ##
+ru() {
+echo -n -e "\n============================================\n\tsearch for musik"; echo ""; i=1 ; for line in $(lynx --dump "http://rutracker.org/forum/search_cse.php&q=$1" | grep https://rutracker.org/forum/ | cut -c7-); do echo $i $line; lines[$i]=$line ; i=$(($i+1)); done ; echo -n -e "\n============================================\n\tPlease select the link to open - "; read answer; w3m ${lines[$answer]}
 }
 
 ## EXTRACT FUNCTION ## | Usage: extract <file>
@@ -91,3 +96,21 @@ share() {
 pst() {
 	curl -F c=@- https://ptpb.pw < $1
 }
+
+# search (sub)folders for filetype and output directory
+folder() {
+	find $1 -type f -name "*.$2"
+}
+
+# resize image
+resize() {
+	convert $1 -resize $2 $3
+}
+
+## random game selector {{{
+function rGame () {
+game=(/mnt/vidya/Emulate/*)
+blue=$(tput setaf 6)
+printf "you should play  %s.\n" "${blue}${game[RANDOM % ${#game[@]}]##*/}"
+}
+## }}}
