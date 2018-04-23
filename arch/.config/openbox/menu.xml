@@ -1,0 +1,280 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="http://openbox.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openbox.org/                 file:///usr/share/openbox/menu.xsd">
+	<menu id="root-menu" label="Openbox 3">
+
+		<item label="urxvt">
+			<action name="Execute">
+				<execute>
+					urxvt
+				</execute>
+			</action>
+		</item>
+		<item label="firefox">
+			<action name="Execute">
+				<execute>
+					firefox
+				</execute>
+			</action>
+		</item>
+		<item label="thunar">
+			<action name="Execute">
+				<execute>
+					 thunar
+				</execute>
+			</action>
+		</item>
+		
+		<seperator/>
+		<menu id="steam" label="steam">
+			<item label="steam (linux)">
+				<action name="Execute">
+					<execute>
+						steam
+					</execute>
+				</action>
+			</item>
+			<item label="steam (win)">
+				<action name="Execute">
+					<execute>
+						wine "/home/shane/.wine/drive_c/Program Files (x86)/Steam/steam.exe"
+					</execute>
+				</action>
+			</item>
+		    </menu>
+		    <menu id="emulation" label="emulation">
+			<item label="PS1">
+				<action name="Execute">
+					<execute>
+						wine "/mnt/vidya/ePSXe/ePSXe.exe
+					</execute>
+				</action>
+			</item>
+			<item label="PS2">
+				<action name="Execute">
+					<execute>
+						PCSX2
+					</execute>
+				</action>
+			</item>
+			<item label="PS3">
+				<action name="Execute">
+					<execute>
+						~/Downloads/rpcs3.AppImage
+					</execute>
+				</action>
+			</item>
+			<item label="Gameboy Color">
+				<action name="Execute">
+					<execute>
+						wine "/mnt/vidya/Program Files (x86)/BGB/bgb.exe"
+					</execute>
+				</action>
+			</item>
+			<item label="GC/Wii">
+				<action name="Execute">
+					<execute>
+						dolphin-emu
+					</execute>
+				</action>
+			</item>
+			<item label="3DS">
+				<action name="Execute">
+					<execute>
+						~/.citra/nightly/citra-qt
+					</execute>
+				</action>
+			</item>
+			<item label="Wii U">
+				<action name="Execute">
+					<execute>
+						wine "/mnt/vidya/Program Files (x86)/Cemu/Cemu.exe"
+					</execute>
+				</action>
+			</item>
+		    </menu>
+
+		<separator/>
+		<menu id="audio" label="audio">
+		    <item label="spotify">
+			<action name="Execute">
+				<execute>
+					spotify
+				</execute>
+			</action>
+		    </item>
+		</menu>
+		<separator/>
+		<menu id="graphics" label="graphics">
+		    <item label="gimp">
+				<action name="Execute">
+					<execute>
+						gimp
+					</execute>
+				</action>
+			</item>
+		    <menu id="graphicsScreenshots" label="take screenshot">
+				<separator label="scrot"/>
+				<item label="Now">
+					<action name="Execute">
+						<execute>
+							scrot '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/Pictures/'
+						</execute>
+					</action>
+				</item>
+				<item label="In 5 Seconds...">
+					<action name="Execute">
+						<execute>
+							scrot -d 5 '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/Pictures/'
+						</execute>
+					</action>
+				</item>
+				<item label="In 10 Seconds...">
+					<action name="Execute">
+						<execute>
+							scrot -d 10 '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/Pictures/'
+						</execute>
+					</action>
+				</item>
+				<item label="Selected Area... (click &amp; drag mouse)">
+					<action name="Execute">
+						<execute>
+							scrot -s '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/Pictures/'
+						</execute>
+					</action>
+				</item>
+			</menu>
+		</menu>
+
+		<menu id="network" label="network">
+			<item label="qbittorrent">
+				<action name="Execute">
+					<execute>
+						qbittorrent
+					</execute>
+				</action>
+			</item>
+			<item label="soulseek">
+				<action name="Execute">
+					<execute>
+	 			soulseekqt					
+					</execute>
+				</action>
+			</item>
+			<item label="filezilla">
+				<action name="Execute">
+					<execute>
+						filezilla
+					</execute>
+				</action>
+			</item>
+		</menu>
+		<menu id="settings" label="settings">
+			<menu id="polyconfig" label="polybar">
+				<item label="restart polybar">
+					<action name="Execute">
+						<execute>
+							polybar -r vortex
+						</execute>
+					</action>
+				</item>
+				<item label="edit polybar">
+					<action name="Execute">
+						<execute>
+							gedit /home/shane/.config/polybar/config
+						</execute>
+					</action>
+				</item>
+			</menu>
+
+
+			<menu id="obConfig" label="openbox">
+				<item label="edit menu.xml">
+					<action name="Execute">
+						<execute>
+							gedit /home/shane/.config/openbox/menu.xml
+						</execute>
+					</action>
+				</item>
+				<item label="edit rc.xml">
+					<action name="Execute">
+						<execute>
+							gedit /home/shane/.config/openbox/rc.xml
+						</execute>
+					</action>
+				</item>
+				<item label="edit autostart">
+					<action name="Execute">
+						<execute>
+							gedit "~/.config/openbox/autostart"
+						</execute>
+					</action>
+				</item>
+				<item label="reconfigure">
+					<action name="Reconfigure"/>
+				</item>
+				<item label="restart">
+					<action name="Restart"/>
+				</item>
+			</menu>
+			
+			<menu id="tint2config" label="tint2">
+				<item label="Edit config file">
+					<action name="Execute">
+						<execute>
+							gedit /home/shane/.config/tint2/tint2rc
+						</execute>
+					</action>
+				</item>
+                <item label="Restart tint2">
+					<action name="Execute">
+						<execute>
+							tint2restart
+						</execute>
+					</action>
+				</item>
+				<separator label="Help?"/>
+			</menu>
+			
+			<menu id="ckb" label="ckb">
+				<item label="restart ckb">
+					<action name="Execute">
+						ckb-next
+					</action>
+				</item>
+			</menu>
+
+		</menu>
+		<separator/>
+	<menu id="power" label="power">
+		<item label="logoff">
+			<action name="Execute">
+				<execute>
+					pkill -u shane
+				</execute>
+			</action>
+		</item>
+		<item label="sleep">
+			<action name="Execute">
+				<execute>
+					systemctl suspend
+				</execute>
+			</action>
+		</item>
+		<item label="reboot">
+			<action name="Execute">
+				<execute>
+					systemctl reboot
+				</execute>
+			</action>
+		</item>
+		<item label="power off">
+			<action name="Execute">
+				<execute>
+					systemctl poweroff
+				</execute>
+			</action>
+		</item>
+	</menu>
+	</menu>
+</openbox_menu>
