@@ -1,0 +1,16 @@
+#!/bin/bash
+
+compton --config ~/.config/compton.conf -b &
+feh --bg-fill /mnt/win/Users/Shane/Pictures/4chan/wallpaper/alex-knight-326705-unsplash.jpg &
+~/scripts/blurme &
+pulseaudio &
+mpd &
+mpdscribble &
+ckb-next &
+hue_ui &
+tint2 &
+polybar vortex &
+numlockx &
+redshift -l 53.3498:6.2603 &
+nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:0]/GPUTargetFanSpeed=50" &
+xboxdrv --detach-kernel-driver --silent --mimic-xpad &
