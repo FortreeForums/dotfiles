@@ -1,57 +1,23 @@
 <?xml version="1.0"?>
 <openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
-  <resistance>
-    <!--<strength>200</strength>
-    <screen_edge_strength>200</screen_edge_strength> //-->
-  </resistance>
   <focus>
     <focusNew>yes</focusNew>
-    <!-- always try to focus new windows when they appear. other rules do
-       apply -->
     <followMouse>no</followMouse>
-    <!-- move focus to a window when you move the mouse into it -->
     <focusLast>yes</focusLast>
-    <!-- focus the last used window when changing desktops, instead of the one
-       under the mouse pointer. when followMouse is enabled -->
     <underMouse>no</underMouse>
-    <!-- move focus under the mouse, even when the mouse is not moving -->
     <focusDelay>200</focusDelay>
-    <!-- when followMouse is enabled, the mouse must be inside the window for
-       this many milliseconds (1000 = 1 sec) before moving focus to it -->
     <raiseOnFocus>no</raiseOnFocus>
-    <!-- when followMouse is enabled, and a window is given focus by moving the
-       mouse into it, also raise the window -->
   </focus>
   <placement>
     <policy>Smart</policy>
-    <!-- 'Smart' or 'UnderMouse' -->
     <center>no</center>
-    <!-- whether to place windows in the center of the free area found or
-       the top left corner -->
     <monitor>Primary</monitor>
-    <!-- with Smart placement on a multi-monitor system, try to place new windows
-       on: 'Any' - any monitor, 'Mouse' - where the mouse is, 'Active' - where
-       the active window is, 'Primary' - only on the primary monitor -->
     <primaryMonitor>1</primaryMonitor>
-    <!-- The monitor where Openbox should place popup dialogs such as the
-       focus cycling popup, or the desktop switch popup.  It can be an index
-       from 1, specifying a particular monitor.  Or it can be one of the
-       following: 'Mouse' - where the mouse is, or
-                  'Active' - where the active window is -->
   </placement>
+
   <theme>
     <name>vortex</name>
     <titleLayout>NLIMC</titleLayout>
-    <!--
-      available characters are NDSLIMC, each can occur at most once.
-      N: window icon
-      L: window label (AKA title).
-      I: iconify
-      M: maximize
-      C: close
-      S: shade (roll up/down)
-      D: omnipresent (on all desktops).
-  -->
     <keepBorder>yes</keepBorder>
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
@@ -110,14 +76,6 @@
     </font>
   </theme>
   <desktops>
-    <!-- this stuff is only used at startup, pagers allow you to change them
-       during a session
-
-       these are default values to use when other ones are not already set
-       by other applications, or saved in your session
-
-       use obconf if you want to change these without having to log out
-       and back in -->
     <number>3</number>
     <firstdesk>1</firstdesk>
     <names>
@@ -137,10 +95,10 @@
     <!-- 'Center', 'Top', or 'Fixed' -->
     <popupFixedPosition>
       <!-- these are used if popupPosition is set to 'Fixed' -->
-      <x>10</x>
+      <x>0</x>
       <!-- positive number for distance from left edge, negative number for
          distance from right edge, or 'Center' -->
-      <y>10</y>
+      <y>0</y>
       <!-- positive number for distance from top edge, negative number for
          distance from bottom edge, or 'Center' -->
     </popupFixedPosition>
@@ -149,42 +107,21 @@
      they are maximized, or when they are initially placed.
      Many programs reserve space automatically, but you can use this in other
      cases. -->
-  <margins>
+
+<!--  <margins>
     <top>7</top>
     <bottom>7</bottom>
     <left>7</left>
     <right>7</right>
-  </margins>
-  <dock>
-    <position>TopLeft</position>
-    <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
-    <floatingX>0</floatingX>
-    <floatingY>0</floatingY>
-    <noStrut>no</noStrut>
-    <stacking>Above</stacking>
-    <!-- 'Above', 'Normal', or 'Below' -->
-    <direction>Vertical</direction>
-    <!-- 'Vertical' or 'Horizontal' -->
-    <autoHide>no</autoHide>
-    <hideDelay>300</hideDelay>
-    <!-- in milliseconds (1000 = 1 second) -->
-    <showDelay>300</showDelay>
-    <!-- in milliseconds (1000 = 1 second) -->
-    <moveButton>Middle</moveButton>
-    <!-- 'Left', 'Middle', 'Right' -->
-  </dock>
+  </margins> -->
+
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
     <keybind key="a"/>
-    <keybind key="a"/>
+    <keybind key="a"/>		
     <keybind key="A-Tab">
       <action name="NextWindow">
         <raise>yes</raise>
-      </action>
-    </keybind>
-    <keybind key="W-g">
-      <action name="Execute">
-        <command>gedit</command>
       </action>
     </keybind>
     <keybind key="W-r">
@@ -198,17 +135,35 @@
 	      <command>/bin/love</command>
       </action>
     </keybind>
-	<keybind key="A-l">
-	<action name="Execute">
-		<command>/home/shane/scripts/lock</command>
-	</action>
-	</keybind>
-	
-	<keybind key="A-r">
-	<action name="Execute">
-		<command>/home/shane/.config/openbox/tiles/tiles</command>
-	</action>
-	</keybind>
+
+<!-- window tiling -->
+
+<keybind key="C-Left">        # left terminal
+  <action name="UnmaximizeFull"/>
+  <action name="MoveResizeTo"><x>589</x><y>482</y><height>430</height><width>490</width></action>
+</keybind>
+
+<keybind key="C-Down">        # middle terminal
+  <action name="UnmaximizeFull"/>
+  <action name="MoveResizeTo"><x>1081</x><y>482</y><height>430</height><width>490</width></action>
+</keybind>
+
+<keybind key="C-Right">        # right terminal
+  <action name="UnmaximizeFull"/>
+  <action name="MoveResizeTo"><x>1575</x><y>482</y><height>430</height><width>490</width></action>
+</keybind>
+
+<keybind key="C-Up">        # main browser
+  <action name="UnmaximizeFull"/>
+  <action name="MoveResizeTo"><x>0</x><y>0</y><height>1440</height><width>1645</width></action>
+</keybind>
+
+<keybind key="C-End">        # secondary browser
+  <action name="UnmaximizeFull"/>
+  <action name="MoveResizeTo"><x>1655</x><y>0</y><height>1440</height><width>905</width></action>
+</keybind>
+
+<!-- end window tiling -->
 
 	<!-- media keys -->
      <keybind key="XF86AudioRaiseVolume">
@@ -632,60 +587,5 @@
       </size>
     </application>
 
-    <application name="vlc">
-      <decor>no</decor>
-      <position force="yes">
-        <x>2414</x>
-        <y>85</y>
-      </position>
-    </application>
-    <application name="discord">
-      <decor>no</decor>
-      <position force="yes">
-        <x>2414</x>
-        <y>85</y>
-      </position>
-    </application>
-    <application name="Navigator">
-      <decor>no</decor>
-      <position force="yes">
-        <x>2414</x>
-        <y>85</y>
-      </position>
-    </application>
-    <application name="gedit">
-      <decor>no</decor>
-      <position force="yes">
-        <x>0</x>
-        <y>0</y>
-      </position>
-    </application>
-    <application name="thunar">
-      <decor>no</decor>
-      <position force="yes">
-        <x>834</x>
-        <y>0</y>
-      </position>
-    </application>
-    <application name="mpv">
-      <decor>no</decor>
-      <position force="yes">
-        <x>1921</x>
-        <y>0</y>
-      </position>
-    </application>
-    <application class="Firefox*" name="reddit*" type="normal">
-      <decor>no</decor>
-      <maximized>no</maximized>
-      <position force="yes">
-        <x>3204</x>
-        <y>0</y>
-      </position>
-      <size>
-        <height>635</height>
-        <width>380</width>
-      </size>
-    </application>
-    <!-- -->
   </applications>
 </openbox_config>
