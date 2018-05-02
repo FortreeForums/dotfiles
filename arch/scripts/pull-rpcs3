@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# simplify the process of building RPCS3 pull requests
+
+## variables {{
+TMP="/tmp/rpcs3_build"
+N="4" # number of threads for compiler to use
+## }}
+
+## show help dialogue if $1 null {{
+while [ $# -eq 0 ]; do
+	echo "No argument supplied. Please rerun with the Pull Request ID you want."
+	exit
+done
+## }}
+
+## clone the repository {{
+echo "Cloning RPCS3 to ${TMP}..."
+git clone https://github.com/RPCS3/rpcs3.git ${TMP} >/dev/null 2>&1
+## }}
+
+## add fetch line to .git/config {{
+cd ${TMP}/.git
+echo "Modifying config file..."
+for i in config; do
+	printf '%s\n' 9i "	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*" . x | ex "$i" >/dev/null 2>&1
+done
+## }}
+
+## checkout the pull {{
+cd ${TMP}
+echo "Fetching pull request..."
+git fetch origin >/dev/null 2>&1
+git checkout pr/$1
+## }}
+
+## finally, build RPCS3 {{
+echo "Fetching submodules..."
+git submodule update --init >/dev/null 2>&1
+mkdir -p ${HOME}/rpcs3 && cd ${HOME}/rpcs3
+cmake ${TMP} && make GitVersion && make -j${N}
+cd ${HOME}
+echo -e "\n All done! You can launch RPCS3 with \${HOME}/rpcs3/bin/rpcs3"
+## }}
