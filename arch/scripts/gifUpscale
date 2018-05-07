@@ -1,0 +1,82 @@
+#!/bin/bash
+
+# a script to help make animated backgrounds from pixel art gifs
+
+## variables {{
+TMP="${HOME}/.cache/pixel"
+SRC="$1"
+WIDTH="$2"
+## }}
+
+## extract the frames {{
+extract() {
+	convert -coalesce ${SRC} ./extract_%05d.png
+}
+## }}
+
+## magnify the frames {{
+magnify() {
+while [ "$(ls | grep extract | wc -l)" -ge 1 ]; do
+	# run the operation every 50 files so the system isnt starved of RAM
+	for f in "$(ls | grep 'extract' | head -50)"; do
+		convert -magnify -magnify $f ./magnify_${num}%04d.png
+		num="$(expr $num + 1)"
+		rm $f
+	done
+done
+}
+## }}
+
+## resize the frames {{
+resize() {
+	mogrify -resize "${WIDTH}" ./magnify_*.png
+}
+## }}
+
+## merge the frames {{
+merge() {
+	ffmpeg -framerate 30 -pattern_type glob -i '*.png' -c:v libx264 -r 30 \
+	output.mp4
+	cp output.mp4 ${HOME}
+}
+## }}
+
+## show help dialogue if $1 null {{
+while [ $# -eq 0 ]; do
+	echo "No argument supplied. \n
+	Please rerun as gifUpscale /path/to/image <dimensions>"
+	exit
+done
+## }}
+
+## check if imagemagick is installed {{
+if [ ! -x "$(command -v convert)" ]; then
+	while true; do
+		echo "ImageMagick is not installed, but required."
+		read -rp "Do you want to install ImageMagick now?" IM_YN
+			case $IM_YN in
+			[yY]* ) sudo pacman -S imagemagick; break;;
+			[nN]* ) echo "Chose not to install. Terminating."; exit;;
+					* ) echo "Please answer yes or no.";;
+			esac
+	done
+fi
+## }}
+
+## create $TMP if it doesnt exist {{
+if [ ! -d ${TMP} ]; then
+	mkdir -p ${TMP}
+fi
+## }}
+
+## now run the script {{
+cd ${TMP}
+
+echo -e "Extracting frames..." && extract
+echo -e "Magnifying frames (this may take a while)..." && magnify
+echo -e "Resizing frames to ${WIDTH}..." && resize
+echo -e "Merging into MP4..." && merge >/dev/null 2>&1
+echo -e "Merge finished! The output MP4 is in your ${HOME}."
+
+rm -rf ${TMP}
+## }}
