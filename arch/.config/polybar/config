@@ -1,0 +1,227 @@
+[colors]
+background = ${xrdb:background}
+background-alt = ${xrdb:background}
+foreground = #DDDDDD
+foreground-alt = #548587
+fg-1 = #BF139E
+fg-2 = #ffd494
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/workspace]
+monitor = ${env:MONITOR:DP-0}
+width = 50
+height = 24
+offset-x=0
+offset-y=0
+fixed-center = false
+
+background = ${xrdb:background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+padding-left = 2
+
+font-0 = MonteCarlo:pixelsize=12:antialias=false;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=10:antialias=false;1
+font-3 = Unifont Upper:fontformat=truetype:size1:antialias=false;0
+font-4 = artwiz cure:pixelsize=10:antialias=false;1
+font-5 = FontAwesome:pixelsize=10:antialias=false;1
+
+modules-left = workspaces
+modules-center = 
+modules-right = 
+
+[module/workspaces]
+type = internal/xworkspaces
+pin-workspaces = true
+enable-click = true
+enable-scroll = true
+format-padding = 0
+icon-0 = 1;
+icon-1 = 2;
+icon-2 = 3;
+icon-3 = 4;
+icon-4 = 5;
+icon-5 = 6;
+icon-6 = 7;
+icon-7 = 8;
+icon-8 = 9;
+icon-9 = 10;
+icon-default =
+format = <label-state>
+label-active = "• "
+label-active-foreground = ${xrdb:color1}
+#label-active-underline = ${colors.blue}
+label-occupied = " > "
+#label-occupied-underline = ${colors.blue}
+label-urgent = " %icon% %name% "
+#label-urgent-foreground = ${colors.urgent}
+#label-urgent-underline = ${colors.urgent}
+label-empty = "• "
+label-empty-foreground = ${xrdb:color3}
+
+[bar/vortex]
+monitor = ${env:MONITOR:DP-0}
+width = 60%
+height = 24
+offset-x=1024
+offset-y=0
+fixed-center = true
+
+background = ${xrdb:background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 8
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = MonteCarlo:pixelsize=12:antialias=false;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=10:antialias=false;1
+font-3 = Unifont Upper:fontformat=truetype:size1:antialias=false;0
+font-4 = artwiz cure:pixelsize=10:antialias=false;1
+font-5 = FontAwesome:pixelsize=10:antialias=false;1
+
+modules-left = date
+modules-center = updates email reddit
+modules-right = pulseaudio cpu memory weather lock
+
+tray-position = right
+tray-padding = 2
+
+[module/lock]
+;[module/custom-menu]
+type = custom/script
+interval = 2
+format = <label>
+;format-prefix = "🔒"
+format-prefix = "☰"
+format-prefix-foreground = ${xrdb:color6}
+exec = echo " "
+click-left = ~/scripts/lock_poly
+;click-left = ~/scripts/custom-menu
+
+[module/musik]
+type = custom/script
+exec = "python3 ~/scripts/now_playing.py"
+tail = true
+format = <label>
+
+[module/weather]
+type = custom/script
+interval = 10
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${xrdb:color1}
+exec = ~/.config/polybar/weather
+
+[module/love]
+type = custom/script
+interval = 2
+format = <label>
+format-prefix = "❤"
+format-prefix-foreground = ${xrdb:color3}
+exec = echo " "
+click-left = /bin/love
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "ܭ "
+#format-prefix = "偽 "
+format-prefix-foreground = ${xrdb:color4}
+label = %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "ᚎ "
+format-prefix-foreground = ${xrdb:color2}
+label = %percentage_used%%
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %d %b"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+#format-prefix = ɸ
+format-prefix = "                           ..::"
+format-suffix = " ::.."
+format-prefix-foreground = ${xrdb:color5}
+format-suffix-foreground = ${xrdb:color5}
+
+label = %date% %time%
+
+[module/pulseaudio]
+type = internal/volume
+ 
+format-volume = <label-volume> <bar-volume>
+label-volume = "🔊"
+label-volume-foreground = ${xrdb:color1}
+
+format-muted-foreground = ${xrdb:color3}
+label-muted = "🔇"
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${xrdb:color1}
+bar-volume-foreground-1 = ${xrdb:color1}
+bar-volume-foreground-2 = ${xrdb:color2}
+bar-volume-foreground-3 = ${xrdb:color2}
+bar-volume-foreground-4 = ${xrdb:color3}
+bar-volume-foreground-5 = ${xrdb:color3}
+bar-volume-foreground-6 = ${xrdb:color6}
+bar-volume-gradient = true
+bar-volume-indicator = 
+bar-volume-indicator-font = 2
+bar-volume-fill = •
+bar-volume-fill-font = 2
+bar-volume-empty = ·
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = #666666
+
+
+## counter modules {{
+[module/updates]
+type = custom/script
+interval = 10
+format = <label>
+format-prefix = "⚠ "
+format-prefix-foreground = ${xrdb:color2}
+exec = ~/scripts/update
+
+[module/email]
+type = custom/script
+interval = 10
+format = <label>
+format-prefix = "✉ "
+format-prefix-foreground = ${xrdb:color2}
+label-prefix-font = 2
+exec = ~/scripts/email-count
+
+[module/reddit]
+type = custom/script
+interval = 10
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${xrdb:color2}
+exec = ~/scripts/inbox-reddit
+## }}
+
+; vim:ft=dosini
