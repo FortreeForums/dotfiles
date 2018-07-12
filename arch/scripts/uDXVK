@@ -21,61 +21,60 @@ dll32=(
 
 ## backup the old DLLs {{
 backup() {
-	if [ ! -d "${CONFIG}/backup" ]; then
-		mkdir -p "${CONFIG}/backup/64/bin"
-		mkdir -p "${CONFIG}/backup/32/bin"
-	fi
+  if [ ! -d "${CONFIG}/backup" ]; then
+    mkdir -p "${CONFIG}/backup/64/bin"
+    mkdir -p "${CONFIG}/backup/32/bin"
+  fi
 
-	cp "${CONFIG}/64/bin/"* "${CONFIG}/backup/64/bin/"
-	cp "${CONFIG}/32/bin/"* "${CONFIG}/backup/32/bin/"
+  cp "${CONFIG}/64/bin/"* "${CONFIG}/backup/64/bin/"
+  cp "${CONFIG}/32/bin/"* "${CONFIG}/backup/32/bin/"
 }
 ## }}
 
 ## restore the old DLLs {{
 restore() {
-	rm "${CONFIG}/64/bin/"*
-	rm "${CONFIG}/32/bin/"*
-	cp "${CONFIG}/backup/64/bin/"* "${CONFIG}/64/bin/"
-	cp "${CONFIG}/backup/32/bin/"* "${CONFIG}/32/bin/"
+  rm "${CONFIG}/64/bin/"*
+  rm "${CONFIG}/32/bin/"*
+  cp "${CONFIG}/backup/64/bin/"* "${CONFIG}/64/bin/"
+  cp "${CONFIG}/backup/32/bin/"* "${CONFIG}/32/bin/"
 
-	WINEPREFIX="${CONFIG}" "${CONFIG}/64/bin/setup_dxvk.sh"
-	WINEPREFIX="${CONFIG}" "${CONFIG}/32/bin/setup_dxvk.sh"
-
+  WINEPREFIX="${CONFIG}" "${CONFIG}/64/bin/setup_dxvk.sh"
+  WINEPREFIX="${CONFIG}" "${CONFIG}/32/bin/setup_dxvk.sh"
 }
 ## }}
 
 ## show help dialogue if $1 is null {{
 while [ $# -eq 0 ]; do
-	echo "Please run as uDXVK <wine prefix> (-b[u]/-r)"
-	echo "-b|--backup         Backup current DLLs"
-	echo "-r|--restore        Restore old DLLs"
-	echo "-bu								  Backup current DLLs and update to the latest"
-	exit
+  echo "Please run as uDXVK <wine prefix> (-b[u]/-r)"
+  echo "-b|--backup         Backup current DLLs"
+  echo "-r|--restore        Restore old DLLs"
+  echo "-bu		    Backup current DLLs and update to the latest"
+  exit
 done
 ## }}
 
 ## check if wine is installed {{
 for d in "${DEPS[@]}"; do
-	command -v $d >/dev/null 2>&1 || {
-		echo >&2 "${DEPS[@]}" are required, but not installed.;
-		read -rp "Do you want to install them now? " DEPS_YN
-		case $DEPS_YN in
-		[yY]* ) sudo pacman -S ${DEPS[@]}; break;;
-		[nN]* ) echo "Chose not to install. Terminating."; exit;;
-				* ) echo -e "Please answer yes or no.\n";
-		esac
-	}
+  command -v $d >/dev/null 2>&1 || {
+    echo >&2 "${DEPS[@]}" are required, but not installed.;
+    read -rp "Do you want to install them now? " DEPS_YN
+    case $DEPS_YN in
+    [yY]* ) sudo pacman -S ${DEPS[@]}; break;;
+    [nN]* ) echo "Chose not to install. Terminating."; exit;;
+        * ) echo -e "Please answer yes or no.\n";
+    esac
+  }
 done
 ## }}
 
 ## determine what to do {{
 while [ ! $# -eq 0 ]; do
-	case $2 in
-	-b|--backup  ) backup && echo "Your DLLs have been backed up."; exit;;
-	-r|--restore ) restore && echo "Your DLLs have been restored."; exit;;
-	-bu          ) backup && echo "Your DLLs have been backed up."; break;;
-	*						 ) break;;
-	esac
+  case $2 in
+  -b|--backup  ) backup && echo "Your DLLs have been backed up."; exit;;
+  -r|--restore ) restore && echo "Your DLLs have been restored."; exit;;
+  -bu          ) backup && echo "Your DLLs have been backed up."; break;;
+             * ) break;;
+  esac
 done
 
 ## download DLLs and run setup {{
@@ -101,19 +100,19 @@ chmod +x ${CONFIG}/32/bin/*
 
 while true; do
 read -rp "Enable DXVK 64-bit? " bit64_YN
-	case $bit64_YN in
-	[yY]* ) WINEPREFIX="$1" "${CONFIG}/64/bin/setup_dxvk.sh"; break;;
-	[nN]* ) exit;;
-	    * ) echo "Please answer yes or no.";
-	esac
+  case $bit64_YN in
+  [yY]* ) WINEPREFIX="$1" "${CONFIG}/64/bin/setup_dxvk.sh"; break;;
+  [nN]* ) exit;;
+      * ) echo "Please answer yes or no.";
+  esac
 done
 
 while true; do
 read -rp "Enable DXVK 32-bit? " bit32_YN
-	case $bit32_YN in
-	[yY]* ) WINEPREFIX="$1" "${CONFIG}/32/bin/setup_dxvk.sh"; break;;
-	[nN]* ) exit;;
-			* ) echo "Please answer yes or no.";
-	esac
+  case $bit32_YN in
+  [yY]* ) WINEPREFIX="$1" "${CONFIG}/32/bin/setup_dxvk.sh"; break;;
+  [nN]* ) exit;;
+      * ) echo "Please answer yes or no.";
+  esac
 done
 ## }}
