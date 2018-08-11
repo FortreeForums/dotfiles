@@ -1,0 +1,24 @@
+#!/bin/bash
+
+## variables {{
+TMP="/home/shane/.local/dxvk.ver"
+INT="$(curl -sf "https://github.com/doitsujin/dxvk/commits/master.atom" | grep '<updated>' | head -n1 | cut -d '>' -f2 | cut -d '<' -f1 | cut -d 'T' -f2 | sed 's/://g')"
+INT=${INT/Z}
+ICN=""
+## }}
+
+## if the tmp file doesnt exist, pipe the RSS into a file {{
+if [ ! -f "$TMP" ]; then
+  echo "${INT}" > "${TMP}"
+fi
+## }}
+
+INT2="$(cat '/home/shane/.local/dxvk.ver')"
+
+## curl the RSS, if curl != tmp file then notify the user {{
+if [[ ! "${INT}" == "${INT2}" ]]; then
+  DISPLAY=:0.0 notify-send -u critical "DXVK has been updated" -i \
+  "${ICN}"
+  rm ${TMP}
+fi
+## }}
