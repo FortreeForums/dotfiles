@@ -1,0 +1,23 @@
+#!/bin/bash
+
+## variables {{
+TMP="/home/shane/.local/rpcs3.ver"
+INT="$(curl -sf "https://rpcs3.net/compatibility?b&rss" | grep 'CDATA' | head -n1 | cut -d '-' -f2 | cut -d ' ' -f1)"
+ICN="/home/shane/.local/rpcs3.jpg"
+## }}
+
+## if tmp file doesnt exist, pipe the RSS into a file {{
+if [ ! -f "$TMP" ]; then
+  echo "${INT}" > ${TMP}
+fi
+## }}
+
+INT2="$(cat '/home/shane/.local/rpcs3.ver')"
+
+## curl the RSS, if number is larger notify the user and delete the tmp file {{
+if [ "${INT}" -gt "${INT2}" ]; then
+  DISPLAY=:0.0 notify-send -u critical "RPCS3 ${INT} has been released" -i \
+  "$ICN"
+  rm ${TMP}	
+fi
+## }}
