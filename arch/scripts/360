@@ -1,5 +1,36 @@
 #!/bin/bash
 
-rmmod xpad
+altProfile() {
+	xboxdrv -s \
+	--mimic-xpad \
+	--wid 0 \
+	--controller-slot 0 \
+	--ui-buttonmap \
+	A=BTN_B,B=BTN_X,X=BTN_A,TR=BTN_THUMBL,TL=BTN_MODE,GUIDE=BTN_THUMBR \
+	--ui-axismap x2=ABS_Z,y2=ABS_RZ \
+	--trigger-as-button \
+	>/dev/null 2>&1
+}
 
-/usr/bin/xboxdrv --detach-kernel-driver --silent -c /etc/default/xboxdrv --trigger-as-button --ui-axismap x2=ABS_Z,y2=ABS_RZ --ui-buttonmap A=BTN_B,B=BTN_X,X=BTN_A,TR=BTN_THUMBL,TL=BTN_MODE,GUIDE=BTN_THUMBR
+## check if user is root {{
+if [[ "$EUID" -ne 0 ]]; then
+	echo "You must run as root."
+	exit
+fi
+## }}
+
+## check if xpad is loaded {{
+if [[ "$(lsmod | grep xpad | head -n1)" ]]; then
+	rmmod xpad
+fi
+## }}
+
+ctrlrNum="$(xboxdrv -L | tail +3 | wc -l)"
+
+## apply profile and print information {{
+if [[ "$(xboxdrv -L | grep Wireless)" ]]; then
+	echo "Xbox 360 Wireless Controller connected."
+fi
+altProfile
+modprobe xpad
+## }}
