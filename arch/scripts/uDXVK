@@ -26,63 +26,64 @@ dll32=(
 
 ## backup the old DLLs {{
 backup() {
-	if [ ! -d "${CONFIG}/backup" ]; then
-		mkdir -p "${CONFIG}/backup/64/bin"
-		mkdir -p "${CONFIG}/backup/32/bin"
-	fi
+  if [ ! -d "${CONFIG}/backup" ]; then
+    mkdir -p "${CONFIG}/backup/64/bin"
+    mkdir -p "${CONFIG}/backup/32/bin"
+  fi
 
-	cp "${CONFIG}/64/bin/"* "${CONFIG}/backup/64/bin/"
-	cp "${CONFIG}/32/bin/"* "${CONFIG}/backup/32/bin/"
+  cp "${CONFIG}/64/bin/"* "${CONFIG}/backup/64/bin/"
+  cp "${CONFIG}/32/bin/"* "${CONFIG}/backup/32/bin/"
 
-	if [ ! -d "${PROTON}/lib/wine/dxvk_bak" ]; then
-		mkdir "${PROTON}/lib/wine/dxvk_bak"
-	fi
+  if [ ! -d "${PROTON}/lib/wine/dxvk_bak" ]; then
+    mkdir "${PROTON}/lib/wine/dxvk_bak"
+  fi
 
-	if [ ! -d "${PROTON}/lib64/wine/dxvk_bak" ]; then
-		mkdir "${PROTON}/lib64/wine/dxvk_bak"
-	fi
+  if [ ! -d "${PROTON}/lib64/wine/dxvk_bak" ]; then
+    mkdir "${PROTON}/lib64/wine/dxvk_bak"
+  fi
 
-	cp "${PROTON}/lib/wine/dxvk/"* "${PROTON}/lib/wine/dxvk_bak/"
-	cp "${PROTON}/lib64/wine/dxvk/"* "${PROTON}/lib64/wine/dxvk_bak/"
+  cp "${PROTON}/lib/wine/dxvk/"* "${PROTON}/lib/wine/dxvk_bak/"
+  cp "${PROTON}/lib64/wine/dxvk/"* "${PROTON}/lib64/wine/dxvk_bak/"
 }
 ## }}
 
 ## restore the old DLLs {{
 restore() {
-	rm "${CONFIG}/64/bin/"*
-	rm "${CONFIG}/32/bin/"*
-	cp "${CONFIG}/backup/64/bin/"* "${CONFIG}/64/bin/"
-	cp "${CONFIG}/backup/32/bin/"* "${CONFIG}/32/bin/"
+  rm "${CONFIG}/64/bin/"*
+  rm "${CONFIG}/32/bin/"*
+  cp "${CONFIG}/backup/64/bin/"* "${CONFIG}/64/bin/"
+  cp "${CONFIG}/backup/32/bin/"* "${CONFIG}/32/bin/"
 
-	WINEPREFIX="${CONFIG}" "${CONFIG}/64/bin/setup_dxvk.sh"
-	WINEPREFIX="${CONFIG}" "${CONFIG}/32/bin/setup_dxvk.sh"
+  WINEPREFIX="${CONFIG}" "${CONFIG}/64/bin/setup_dxvk.sh"
+  WINEPREFIX="${CONFIG}" "${CONFIG}/32/bin/setup_dxvk.sh"
 
-	rm "${PROTON}/lib/wine/dxvk/"*
-	rm "${PROTON}/lib64/wine/dxvk/"*
-	cp "${PROTON}/lib/wine/dxvk_bak/"* "${PROTON}/lib/wine/dxvk/"
-	cp "${PROTON}/lib64/wine/dxvk_bak/"* "${PROTON}/lib64/wine/dxvk/"
+  rm "${PROTON}/lib/wine/dxvk/"*
+  rm "${PROTON}/lib64/wine/dxvk/"*
+  cp "${PROTON}/lib/wine/dxvk_bak/"* "${PROTON}/lib/wine/dxvk/"
+  cp "${PROTON}/lib64/wine/dxvk_bak/"* "${PROTON}/lib64/wine/dxvk/"
 }
 ## }}
 
 ## show help dialogue if $1 is null {{
 while [ $# -eq 0 ]; do
-	echo "Please run as uDXVK <wine prefix> (-b[u]/-r)"
-	echo "-b|--backup         Backup current DLLs"
-	echo "-r|--restore        Restore old DLLs"
-	echo "-bu				  Backup current DLLs and update to the latest"
-	exit
+  echo "Please run as uDXVK <wine prefix> (-b[u]/-r)"
+  echo "-b|--backup         Backup current DLLs"
+  echo "-r|--restore        Restore old DLLs"
+  echo "-bu                 Backup current DLLs and update to the latest"
+  exit
 done
 ## }}
 
 ## determine what to do {{
 while [ ! $# -eq 0 ]; do
-	case $2 in
-	-b|--backup  ) backup && echo "Your DLLs have been backed up."; exit;;
-	-r|--restore ) restore && echo "Your DLLs have been restored."; exit;;
-	-bu          ) backup && echo "Your DLLs have been backed up."; break;;
-	*			 ) break;;
-	esac
+  case $2 in
+  -b|--backup  ) backup && echo "Your DLLs have been backed up."; exit;;
+  -r|--restore ) restore && echo "Your DLLs have been restored."; exit;;
+  -bu          ) backup && echo "Your DLLs have been backed up."; break;;
+  *            ) break;;
+  esac
 done
+## }}
 
 ## download DLLs and run setup {{
 if [ ! -d "${CONFIG}" ]; then
@@ -96,7 +97,7 @@ rm "${CONFIG}/64/bin/"*
 rm "${PROTON}/lib64/wine/dxvk/"*
 for link64 in "${dll64[@]}"; do 
   wget "$link64" -P "${CONFIG}/64/bin/" >/dev/null 2>&1
-	wget "$link64" -P "${PROTON}/lib64/wine/dxvk/" >/dev/null 2>&1
+  wget "$link64" -P "${PROTON}/lib64/wine/dxvk/" >/dev/null 2>&1
 done
 chmod +x "${CONFIG}/64/bin/"*
 rm "${PROTON}/lib64/wine/dxvk/setup_dxvk.sh"
@@ -106,7 +107,7 @@ rm "${CONFIG}/32/bin/"*
 rm "${PROTON}/lib/wine/dxvk/"*
 for link32 in "${dll32[@]}"; do
   wget "$link32" -P "${CONFIG}/32/bin/" >/dev/null 2>&1
-	wget "$link32" -P "${PROTON}/lib/wine/dxvk/" >/dev/null 2>&1
+  wget "$link32" -P "${PROTON}/lib/wine/dxvk/" >/dev/null 2>&1
 done
 chmod +x "${CONFIG}/32/bin/"*
 rm "${PROTON}/lib/wine/dxvk/setup_dxvk.sh"
