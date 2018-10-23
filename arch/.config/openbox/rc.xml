@@ -130,27 +130,61 @@
     <keybind key="A-q">
       <action name="Close"/>
     </keybind>
+
+<!-- program hotkeys -->
+
     <keybind key="W-l">
       <action name="Execute">
 	      <command>/bin/love</command>
       </action>
     </keybind>
 
+    <keybind key="W-u">
+	<action name="Execute">
+		<command>/bin/urxvt</command>
+    	</action>
+    </keybind>
+<!-- end program hotkeys -->
+
+<!-- window switching -->
+
+<keybind key="Alt-Left">
+  <action name="DirectionalTargetWest">
+    <finalactions>
+      <action name="Focus"/>
+      <action name="Raise"/>
+      <action name="Unshade"/>
+    </finalactions>
+  </action>
+</keybind>
+
+<keybind key="Alt-Right">
+  <action name="DirectionalTargetEast">
+    <finalactions>
+      <action name="Focus"/>
+      <action name="Raise"/>
+      <action name="Unshade"/>
+    </finalactions>
+  </action>
+</keybind>
+
+<!-- window switching -->
+
 <!-- window tiling -->
 
 <keybind key="C-Left">        # left terminal
   <action name="UnmaximizeFull"/>
-  <action name="MoveResizeTo"><x>589</x><y>482</y><height>430</height><width>490</width></action>
+  <action name="MoveResizeTo"><x>547</x><y>482</y><height>430</height><width>490</width></action>
 </keybind>
 
 <keybind key="C-Down">        # middle terminal
   <action name="UnmaximizeFull"/>
-  <action name="MoveResizeTo"><x>1081</x><y>482</y><height>430</height><width>490</width></action>
+  <action name="MoveResizeTo"><x>1039</x><y>482</y><height>430</height><width>490</width></action>
 </keybind>
 
 <keybind key="C-Right">        # right terminal
   <action name="UnmaximizeFull"/>
-  <action name="MoveResizeTo"><x>1575</x><y>482</y><height>430</height><width>490</width></action>
+  <action name="MoveResizeTo"><x>1531</x><y>482</y><height>430</height><width>490</width></action>
 </keybind>
 
 <keybind key="C-Up">        # main browser
@@ -168,12 +202,12 @@
 	<!-- media keys -->
      <keybind key="XF86AudioRaiseVolume">
      <action name="Execute">
-       <command>amixer set Master 5%+</command>
+       <command>amixer set Master 2%+</command>
      </action>
   </keybind>
    <keybind key="XF86AudioLowerVolume">
      <action name="Execute">
-       <command>amixer set Master 5%-</command>
+       <command>amixer set Master 2%-</command>
      </action>
    </keybind>
    <keybind key="XF86AudioMute">
@@ -183,22 +217,22 @@
   </keybind>
   <keybind key="XF86AudioStop">
 	  <action name="Execute">
-		  <command>mpc toggle</command>
+		  <command>mpc stop</command>
 	  </action>
   </keybind>
   <keybind key="XF86AudioPlay">
 	  <action name="Execute">
-		  <command>mpc toggle</command>
+		  <command>/home/shane/scripts/vlme-ctrl --play</command>
 	  </action>
   </keybind>
   <keybind key="XF86AudioPrev">
 	  <action name="Execute">
-		  <command>mpc prev</command>
+		  <command>/home/shane/scripts/vlme-ctrl --prev</command>
 	  </action>
   </keybind>
   <keybind key="XF86AudioNext">
 	  <action name="Execute">
-		  <command>mpc next</command>
+		  <command>/home/shane/scripts/vlme-ctrl --next</command>
 	  </action>
   </keybind>
 	<!-- media keys -->
@@ -586,6 +620,13 @@
         <width>1890</width>
       </size>
     </application>
+
+<application name="urxvt">
+  <position force="yes">
+    <x>-3595</x>
+    <y>500</y>
+  </position>
+</application>
 
   </applications>
 </openbox_config>
