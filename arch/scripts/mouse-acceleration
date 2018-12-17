@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# find mouse ID number and apply xinput/xset settings. run at startup
+# apply xinput/xset settings to mouse at startup
 
-id="$(xinput list | grep "Logitech G500s Laser Gaming Mouse  " | head -n1 | cut -d '=' -f2 | cut -c-2)"
+id="Logitech G500s Laser Gaming Mouse"
 
 xinput --set-prop "${id}" 'libinput Accel Profile Enabled' 0,1 &&
 echo "Acceleration Profile disabled" || exit 1
