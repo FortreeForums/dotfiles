@@ -1,0 +1,53 @@
+! main colors {{
+*foreground:        #d498c2
+*background:        #0c010a
+*color0:  #0c010a
+*color1:  #7F006B
+*color2:  #52034B
+*color3:  #690C59
+*color4:  #540060
+*color5:  #951761
+*color6:  #9F4B6D
+*color7:  #d498c2
+*color8:  #946a87
+*color9:  #7F006B
+*color10:  #52034B
+*color11:  #690C59
+*color12:  #540060
+*color13:  #951761
+*color14:  #9F4B6D
+*color15:  #d498c2
+! }}
+
+! URxvt {{
+URxvt*font: xft:MonteCarlo:size=12
+URxvt*boldFont: xft:MonteCarlo:size=12
+URxvt.italicFont: xft:MonteCarlo:size=12
+URxvt.boldItalicFont: xft:MonteCarlo:size=12
+URxvt.geometry: 80x30
+URxvt.saveLines: 10000
+URxvt.cutchars: "()*,<>[]{}|''"
+URxvt.perl-ext-common: default,matcher,searchable-scrollback,selection-to-clipboard
+URxvt.selection-autotransform.0: s/^([^:[:space:]]+):(\\d+):?$/+$2 \\Q$1\\E/
+URxvt.skipBuiltinGlyphs: false
+URxvt.url-launcher: /usr/bin/xdg-open
+! URxvt.internalBorder: 10 - 10px padding
+URxvt*colorUL: #bb2c62
+URxvt.scrollBar: false
+URxvt.visualBell: true
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: true
+URxvt.cursorColor:#56124e
+URxvt*title: ricu~
+URxvt*lineSpace: -1
+URxvt.imLocale: en_IE.UTF-8
+! }}
+
+! Font settings {{
+Xft.hintstyle:              hintfull
+Xft.hinting:                1
+Xft.antialias:              0
+Xft.rgba:                   rgb
+Xft.lcdfilter:              lcddefault
+Xft.dpi: 101
+! }}
