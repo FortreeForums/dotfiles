@@ -1,0 +1,303 @@
+;; colors {{
+[colors]
+background = ${xrdb:background}
+foreground = ${xrdb:foreground}
+
+; Light bg
+primary = ${xrdb:color4}
+; Dark bg
+secondary = ${xrdb:color8}
+; Really dark bg/fg
+tertiary = ${xrdb:color0}
+; Red
+urgency = ${xrdb:color1}
+;; }}
+
+;; start menu bg {{
+[section/base_panel]
+monitor = ${env:MONITOR:DisplayPort-1}
+enable-ipc = true
+override-redirect = true
+bottom = false
+
+height = 490
+width = 330
+offset-y = 19
+offset-x = 42
+fixed-center = true
+;; radius-top = 8
+
+background = ${xrdb:background}
+foreground = ${xrdb:foreground}
+
+overline-size = 0
+overline-color = ${xrdb:background}
+underline-size = 0
+
+spacing = 0
+padding-left = 0
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 0
+
+# Fonts
+# Very large offset to move the text to the bottom of the bar
+font-4 = "Misc Termsyn:size=10;140"
+font-1 = "Wuncon Siji:size=8;140"
+font-3 = "xos4 Terminus:size=8;140"
+font-0 = "scientifica:size=9;140"
+font-2 = Iosevka Nerd Font:style=Medium:size=12;140
+
+modules-left = launcher2
+;; }}
+
+;; workspaces {{
+[bar/left]
+monitor = ${env:MONITOR:DisplayPort-1}
+inherit = section/base_panel
+offset-y = 0
+offset-x = 0
+width = 83
+height = 19
+bottom = false
+
+background = ${xrdb:background}
+foreground = ${colors.foreground}
+
+font-0 = MonteCarlo:pixelsize=12:antialias=false;1
+font-1 = "FuraCode Nerd Font:size=12;3"
+font-2 = "FuraCode Nerd Font:style=Bold:size=12;3"
+font-3 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-4 = siji:pixelsize=10:antialias=false;1
+font-5 = Unifont Upper:fontformat=truetype:size1:antialias=false;0
+font-6 = artwiz cure:pixelsize=10:antialias=false;1
+font-7 = FontAwesome:pixelsize=10:antialias=false;1
+
+modules-left = launcher2 dsPT
+;; }}
+
+;; main bar {{
+[bar/top]
+monitor = ${env:MONITOR:DisplayPort-1}
+bottom = false
+fixed-center = true
+width = 1488
+offset-x = 1072
+height = 19
+
+background = ${xrdb:background}
+foreground = ${colors.foreground}
+
+tray-position = right
+tray-detached = false
+tray-maxsize = 15
+tray-background = ${xrdb:color4}
+tray-offset-y = 0
+tray-padding = 5
+tray-scale = 1.0
+
+font-0 = MonteCarlo:pixelsize=12:antialias=false;1
+font-1 = "FuraCode Nerd Font:size=12;3"
+font-2 = "FuraCode Nerd Font:style=Bold:size=12;3"
+font-3 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-4 = siji:pixelsize=10:antialias=false;1
+font-5 = Unifont Upper:fontformat=truetype:size1:antialias=false;0
+font-6 = artwiz cure:pixelsize=10:antialias=false;1
+font-7 = FontAwesome:pixelsize=10:antialias=false;1
+
+modules-left = date
+modules-center = updates email
+modules-right = pulseaudio daTS
+
+locale = en_US.UTF-8
+
+override-redirect = false
+;; }}
+
+;; start menu {{
+[module/launcher]
+type = custom/text
+content = "     "
+;content = "  "
+
+; "content" has the same properties as "format-NAME"
+content-background = ${xrdb:color4}
+content-foreground = ${colors.background}
+content-padding = 10
+click-left = ~/scripts/startmenu/main options
+
+[module/launcher2]
+type = custom/text
+content = "   "
+
+; "content" has the same properties as "format-NAME"
+content-background = ${xrdb:color4}
+content-foreground = ${colors.background}
+content-padding = 2
+click-left = ~/scripts/startmenu/main show-noanim
+;; }}
+
+;; arrow modules {{
+[module/dsPT]
+type = custom/text
+content = ""
+content-background = ${xrdb:color4}
+content-foreground = ${xrdb:background}
+
+[module/daTS]
+type = custom/text
+content = "%{O20}"
+content-foreground = ${xrdb:color4}
+content-background = ${xrdb:background}
+
+[module/dulT]
+type = custom/text
+content = 
+content-foreground = ${xrdb:background}
+;content-background = ${xrdb:background}
+
+[module/durT]
+type = custom/text
+content = 
+content-foreground = ${xrdb:background}
+content-background = ${xrdb:background}
+;; }}
+
+;; main bar modules {{
+[module/pulseaudio]
+type = internal/alsa
+format-volume = <label-volume> <bar-volume>
+label-volume = "%{O350}🔊"
+label-volume-foreground = ${xrdb:color1}
+
+format-muted-foreground = ${xrdb:color3}
+label-muted = "%{O350}🔇"
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${xrdb:color1}
+bar-volume-foreground-1 = ${xrdb:color1}
+bar-volume-foreground-2 = ${xrdb:color1}
+bar-volume-foreground-3 = ${xrdb:color6}
+bar-volume-foreground-4 = ${xrdb:color6}
+bar-volume-foreground-5 = ${xrdb:color6}
+bar-volume-foreground-6 = ${xrdb:color3}
+bar-volume-gradient = true
+bar-volume-indicator = 
+bar-volume-indicator-font = 4
+bar-volume-fill = •
+#bar-volume-fill = )
+bar-volume-fill-font = 4
+bar-volume-empty = ·
+bar-volume-empty-font = 4
+bar-volume-empty-foreground = #666666
+
+[module/update]
+type = custom/script
+exec = ~/.config/polybar/arch-update.sh --display
+; exec-if = wget -q --spider http://google.com
+exec-if = ping -q -c1 -l1 8.8.8.8 >/dev/null
+; 10 minutes
+interval = 600
+
+format =  <label>
+format-padding = 1
+format-background = ${colors.secondary}
+format-foreground = ${colors.tertiary}
+; Trigger update
+click-right = ~/.config/polybar/arch-update.sh --update
+
+[module/date]
+type = internal/date
+interval = 1.0
+format = <label>
+format-prefix = "..:: "
+format-suffix = " ::.."
+label-foreground = #FFFFFF 
+format-prefix-foreground = ${xrdb:color5}
+format-suffix-foreground = ${xrdb:color5}
+format-padding = 25
+label = %date%%time%
+label-font = 0
+
+time = %H:%M
+time-alt =
+date =
+date-alt = %d/%m/%Y
+
+[module/updates]
+type = custom/script
+interval = 10
+format = <label>
+format-prefix = "⚠ "
+format-prefix-foreground = ${xrdb:color2}
+format-padding = 1
+exec = ~/scripts/update
+
+[module/email]
+type = custom/script
+interval = 10
+format = <label>
+format-prefix = "✉ "
+format-prefix-foreground = ${xrdb:color2}
+format-padding = 1
+label-prefix-font = 2
+exec = ~/scripts/email-count
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "ܭ "
+format-prefix-foreground = ${xrdb:color4}
+format-background = ${xrdb:color1}
+format-padding = 1
+label = %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "ᚎ "
+format-prefix-foreground = ${xrdb:color4}
+format-background = ${xrdb:color1}
+label = %percentage_used%%
+format-padding = 1
+
+[module/weather]
+type = custom/script
+interval = 10
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${xrdb:color4}
+format-padding = 1
+format-background = ${xrdb:color1}
+exec = ~/.config/polybar/weather
+;; }}
+
+[settings]
+screenchange-reload = true
+
+
+
+
+
+
+[bar/startmenu_bar]
+monitor = ${env:MONITOR:DisplayPort-1}
+offset-y = 19
+offset-x = 0
+width = 59
+height = 372
+bottom = false
+
+background = ${xrdb:background}
+foreground = ${colors.foreground}
+
+font-0 = MonteCarlo:pixelsize=12:antialias=false;1
+font-1 = "FuraCode Nerd Font:size=12;3"
+font-2 = "FuraCode Nerd Font:style=Bold:size=12;3"
+font-3 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-4 = siji:pixelsize=10:antialias=false;1
+font-5 = Unifont Upper:fontformat=truetype:size1:antialias=false;0
+font-6 = artwiz cure:pixelsize=10:antialias=false;1
+font-7 = FontAwesome:pixelsize=10:antialias=false;1
+
+modules-left = weather
