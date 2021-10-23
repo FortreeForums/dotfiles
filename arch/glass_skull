@@ -1,0 +1,50 @@
+/* Make the window transparent */
+window, #main-window, #toolbar-menubar, #TabsToolbar, #PersonalToolbar, #navigator-toolbox,#sidebar-box{
+	font-weight: 300 !important;
+	font-size: 15px !important;
+	font-family: MonteCarlo !important;
+    	background-color: rgba(3,3,10,0.3) !important;
+    	-moz-appearance: none !important;
+}
+
+window, #nav-bar{
+    	background-color: rgba(3,3,10,0.3) !important;
+    	-moz-appearance: none !important;
+}
+
+.tab-background[selected="true"] {
+    	background-color: color-mix(in srgb, currentColor 11%, transparent) !important;
+    	background-image: none !important;
+    	-moz-appearance: none !important;
+}
+
+#main-window #navigator-toolbox #TabsToolbar {
+  	background: transparent !important;
+}
+
+#urlbar-background {
+	background: rgba(3,3,10,0.3) !important;
+	border: 1px solid rgba(0,0,0,0.5) !important;
+}
+
+#urlbar {
+	text-align: center !important;
+}
+
+.urlbarView {
+	background-color: #03030AC0 !important;
+	backdrop-filter: blur(32px) !important;
+}
+
+/* Hide favicons */
+.bookmark-item > .toolbarbutton-icon {
+	display: none !important;
+}
+
+#PlacesToolbarItems > .bookmark-item > .toolbarbutton-icon[label]: {
+	margin-inline-end: 0px !important;
+}
+
+.tabbrowser-tab .tab-icon-image {
+	display: none !important;
+}
