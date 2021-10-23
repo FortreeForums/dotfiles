@@ -1,0 +1,121 @@
+//META{"name":"Full Transparency","description":"A theme designed specifically for using the transparency option in BetterDiscord, with extra features/animations. Use together with FullTransparency plugin.(Not required)<br><br> *Fully close discord and reopen when first turning on transparency option. Ctrl + R does not work.<br>- Please use the support server listed below if you need any help.","author":"Satoru","version":"1.4.4","website":"http://discord.gg/fjvwb95"}*//{}
+
+@import url('https://satoru8.github.io/FullTransparency/FullTransparency.css'); /* Main theme, do not touch. */
+
+/* Addons start here. If you dont like an addon, remove the import */
+@import url('https://satoru8.github.io/Addons/FullScreenServerSettingsMenu/fullScreenServerSettingsMenu.css');
+@import url('https://satoru8.github.io/Addons/FullScreenStatusPicker/fullScreenStatusPicker.css');
+@import url('https://satoru8.github.io/Addons/Compact/Settings/CompactSettings.css');
+@import url('https://satoru8.github.io/Addons/OldUserSettings/oldUserSettings.css');
+@import url('https://satoru8.github.io/Addons/CodeBlock/CodeBlocks.css');
+@import url('https://satoru8.github.io/FullSizePfp/FullSizePfp.css');
+@import url('https://satoru8.github.io/Addons/FriendsList.css');
+@import url('https://satoru8.github.io/Addons/GlowStatus.css');
+@import url('https://satoru8.github.io/Addons/Library.css');
+
+/*
+User Customizable Theme Settings.
+
+There is a lot of settings. 
+I suggest you take your time to review them all. 
+
+*/
+:root {
+
+    --brightness: rgba(0, 0, 0, 0.8) ;/* Main theme brightness / background colour */
+    --bgLayer: rgba(0, 0, 0, 0.0) ;/* Adds a layer for use with wallpapers. Adjust the 4th number(alpha) for brightness. 1 = black, 0 = transparent */ 
+    --settings: rgba(0, 0, 0, 0.8) ;/* Settings menu transparency */
+
+    --homeIcon: url('https://i.imgur.com/yA3h4mo.png');
+
+    --bgBlur: 0px;/* Optional blur effect for secondary wallpaper. */
+--bgOpacity:0.6;/* Opacity on the secondary wallpaper. */
+
+--winRad: 4px;/* Discord window radius/roundness */
+
+    --accent: rgba(175, 0, 175, 0.7) ;/* Main theme accent colours */
+    --border: rgba(175, 0, 175, 0.7);/* Border Colours */
+    --gSelect:rgba(0, 255, 245, 0.7);/* Currently selected guild colour. 5px 2px Default */ 
+    --unread: rgba(255, 25, 25, 0.9) ;/* Unread messages colour */
+--sb:   rgba(178, 0, 195, 0.2) ;/* Scrollbars. */
+
+    --round: 50%; /* 0% Square, 50% Circle Pfps/Guilds*/
+
+    --font: Whitney,Helvetica Neue,Helvetica,Arial,sans-serif ;/* Discord default font - Whitney,Helvetica Neue,Helvetica,Arial,sans-serif */
+    --fontSize: 14px;
+    --textColour: #fff;/* Chat text colour */
+
+    --profileRadius: 5px;/* User popout profiles. 0 is normal squared edges. Up to 50px for rounded profiles. */
+    --rolesRadius: 6px;      /* Roles roundness */
+--color: #fff;/* PFP Name colour */
+
+/* Old/Compact User Settings */
+    --sWidth2: 70% ; /* Settings Width */
+    --sHeight2: 90% ; /* Settings Height */
+    
+    --sBackground: rgba(40, 40, 40, 0.9) ;  /* Overall Main Settings Background */ 
+    --sBackgroundRight: transparent ;   /* Right side settings Colour - Set to transparent to use 'sBackground' setting. */
+    --sBackgroundLeft: transparent ;    /* Left side settings Colour - Set to transparent to use 'sBackground' setting. */
+
+    --sBackdrop2: rgba(0, 0, 0, 0.3) ; /* Settings Backdrop transparency/colour */
+    --sRadius2: 6px ;   /* Settings Border Radius(Roundness) */
+
+    --blurSpeed: 200ms ; /* Email Blur Speed */
+    --blurOpacity: 0.8 ; /* Email Blur Opacity */
+
+/* CodeBlocks */
+--cbBG: rgba(0, 0, 0, 0.2);/* Main background colour */
+--mainColour:#073642cc;/* Main line colour */
+--slColour: #002b36cc;/* Secondary line colour */
+
+/* GlowStatus */
+    --sGlow: 5px 2px;/* Blur/Thickness Default: 5px 2px */
+
+    --online: #00ff8b;/* Status Colours */
+    --offline: #747f8d;
+    --idle: #faa61a;
+    --stream: #593695;
+    --dnd: #f04747;
+    --invis: #1a36fa;
+
+/* Uri's FullScreen Status */
+    --sPickerOnlineBGColour: #43b581;
+    --sPickerIdleBGColour: #faa61a;
+    --sPickerDNDBGColour: #f04747;
+    --sPickerInviBGColour: #1a36fa;
+
+    --sPickerOnlineBGIcon: url('https://satoru8.github.io/Addons/FullScreenStatusPicker/Assets/online.svg');
+    --sPickerIdleBGIcon: url('https://satoru8.github.io/Addons/FullScreenStatusPicker/Assets/idle.svg');
+    --sPickerDNDBGIcon:url('https://satoru8.github.io/Addons/FullScreenStatusPicker/Assets/dnd.svg');
+    --sPickerInviBGIcon: url('https://satoru8.github.io/Addons/FullScreenStatusPicker/Assets/invis.svg');
+
+/* Uri's ServerSettings Menu*/
+    --ssColourInvite: #7289da;
+--ssColourServerSettings: #046d94;
+--ssColourCreateChannel: #daa520;
+--ssColourCreateCategory: #751e5f;
+--ssColourNotification: #157563;
+--ssColourPrivacy: #497388;
+--ssColourNickname: #714484;
+--ssColourHidden: #cc6699;
+--ssColourLeave: #f04747;
+
+--ssIconInvite: url('https://satoru8.github.io/Addons/FullScreenServerSettingsMenu/Assets/invite.svg');
+--ssIconServerSettings: url('https://satoru8.github.io/Addons/FullScreenServerSettingsMenu/Assets/setting.svg');
+--ssIconCreateChannel: url('https://satoru8.github.io/Addons/FullScreenServerSettingsMenu/Assets/channel.svg');
+--ssIconCreateCategory: url('https://satoru8.github.io/Addons/FullScreenServerSettingsMenu/Assets/category.svg');
+--ssIconNotification: url('https://satoru8.github.io/Addons/FullScreenServerSettingsMenu/Assets/notif.svg');
+--ssIconPrivacy: url('https://satoru8.github.io/Addons/FullScreenServerSettingsMenu/Assets/privacy.svg');
+--ssIconNickname: url('https://satoru8.github.io/Addons/FullScreenServerSettingsMenu/Assets/nickname.svg');
+--ssIconHiddenIsHidden: url('https://satoru8.github.io/Addons/FullScreenServerSettingsMenu/Assets/hidden.svg');
+--ssIconHiddenIsShown: url('https://satoru8.github.io/Addons/FullScreenServerSettingsMenu/Assets/shown.svg');
+--ssIconLeave: url('https://satoru8.github.io/Addons/FullScreenServerSettingsMenu/Assets/leave.svg');
+}
+
+/* Main wallpaper. */
+#app-mount {background-image: url(''); background-position: center;background-size: cover;background-repeat: no-repeat}
+
+ /* Optional secondary wallpaper. For use with opacity setting. */
+#app-mount::before {background-image: url(''); background-position: center;background-size: cover;background-repeat: no-repeat}
+
+/* Custom CSS */
